@@ -71,6 +71,41 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vue小技巧" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-date">
+  <time class="dt-published" datetime="2021-01-21T09:29:48.331Z" itemprop="datePublished">2021-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Vue-小技巧"><a href="#Vue-小技巧" class="headerlink" title="Vue 小技巧"></a>Vue 小技巧</h2><ol>
+<li><p>去掉url的#：在路由文件添加 <strong>mode: ‘history’</strong> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;<span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">redirect</span>: <span class="string">&#x27;/home&#x27;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>, <span class="attr">component</span>: Home&#125;,</span><br><span class="line">  </span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  mode: <span class="string">&#x27;history&#x27;</span>,</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="ckk6o570m0001gwhf8fs4d385" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-我的第一篇文章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/01/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="article-date">
@@ -107,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckk6j8qx40001oohf31zyb51s" data-title="我的第一篇文章" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="ckk6o570p0002gwhfbmyw0bjx" data-title="我的第一篇文章" class="article-share-link">Share</a>
       
       
       
@@ -156,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/21/hello-world/" data-id="ckk6j8qwz0000oohf5f2qggr9" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/21/hello-world/" data-id="ckk6o56zz0000gwhfckj8d2mp" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -211,6 +246,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2021/01/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">我的第一篇文章</a>
