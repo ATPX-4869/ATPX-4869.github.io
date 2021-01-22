@@ -4,14 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>Hexo搭建个人博客 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="Hexo 安装node.js 检验： 123node -vnpm -v 安装cnpm，npm下载太慢 1npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org 检验： 1cnpm -v 安装hexo  1cnpm install -g hexo-cli 检验： 1hexo -v 下载hexo项目 1hexo init 启动项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo搭建个人博客">
+<meta property="og:url" content="http://example.com/2021/01/21/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo 安装node.js 检验： 123node -vnpm -v 安装cnpm，npm下载太慢 1npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org 检验： 1cnpm -v 安装hexo  1cnpm install -g hexo-cli 检验： 1hexo -v 下载hexo项目 1hexo init 启动项目">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-21T07:15:54.000Z">
+<meta property="article:modified_time" content="2021-01-22T02:17:23.235Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -69,44 +74,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-vue小技巧" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-date">
-  <time class="dt-published" datetime="2021-01-21T09:29:48.331Z" itemprop="datePublished">2021-01-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="Vue-小技巧"><a href="#Vue-小技巧" class="headerlink" title="Vue 小技巧"></a>Vue 小技巧</h2><ol>
-<li><p>去掉url的#：在路由文件添加 <strong>mode: ‘history’</strong> </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;<span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">redirect</span>: <span class="string">&#x27;/home&#x27;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>, <span class="attr">component</span>: Home&#125;,</span><br><span class="line">  </span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  mode: <span class="string">&#x27;history&#x27;</span>,</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="ckk7nmpfk000124hfbf7hhqe6" data-title="" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Hexo搭建个人博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Hexo搭建个人博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/01/21/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
   <time class="dt-published" datetime="2021-01-21T07:15:54.000Z" itemprop="datePublished">2021-01-21</time>
@@ -119,8 +87,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/01/21/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo搭建个人博客</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Hexo搭建个人博客
     </h1>
   
 
@@ -183,11 +151,23 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
+</article>
 
 
 </section>
