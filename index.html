@@ -71,21 +71,1780 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-vue小技巧" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-Vue语法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-date">
-  <time class="dt-published" datetime="2021-01-21T09:29:48.331Z" itemprop="datePublished">2021-01-21</time>
+    <a href="/2021/01/22/Vue%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2021-01-22T07:39:42.000Z" itemprop="datePublished">2021-01-22</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/22/Vue%E8%AF%AD%E6%B3%95/">Vue语法</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="Vue-小技巧"><a href="#Vue-小技巧" class="headerlink" title="Vue 小技巧"></a>Vue 小技巧</h2><ol>
-<li><p>去掉url的#：在路由文件添加 <strong>mode: ‘history’</strong> </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;<span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">redirect</span>: <span class="string">&#x27;/home&#x27;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>, <span class="attr">component</span>: Home&#125;,</span><br><span class="line">  </span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  mode: <span class="string">&#x27;history&#x27;</span>,</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+        <h2 id="1-el-挂载点"><a href="#1-el-挂载点" class="headerlink" title="1 el:挂载点"></a>1 el:挂载点</h2><ol>
+<li>Vue实例的作用范围：Vue会管理el选<strong>项命中的元素</strong>及其内部的<strong>后代元素</strong>；</li>
+<li>可以使用其他选择器，建议使用<strong>ID选择器</strong>；</li>
+<li>可以使用其他的双标签，<strong>不能</strong>使用<strong>HTML</strong>和<strong>body</strong>。</li>
+</ol>
+<h2 id="2-data：数据对象"><a href="#2-data：数据对象" class="headerlink" title="2 data：数据对象"></a>2 data：数据对象</h2><ol>
+<li>Vue众用到的数据定义在<strong>data</strong>中；</li>
+<li>data中可以写<strong>复杂类型</strong>的数据；</li>
+<li>渲染负载类型数据时，遵守<strong>js的语法</strong>即可。</li>
+</ol>
+<h2 id="3-v-text"><a href="#3-v-text" class="headerlink" title="3 v-text"></a>3 v-text</h2><ol>
+<li>v-text指令的作用是：设置标签的内容（textContent）；</li>
+<li>默认写法会替换全部内容，使用表达式可以替换指定内容；</li>
+<li>内部支持写表达式</li>
+</ol>
+<h2 id="4-v-html"><a href="#4-v-html" class="headerlink" title="4 v-html"></a>4 v-html</h2><ol>
+<li>v-html指令的作用：设置元素的innerHTML；</li>
+<li>内容中有html结构会被解析为标签；</li>
+<li>v-text指令无论内容是什么，只会解析为文本；</li>
+<li>解析<strong>文本</strong>使用<strong>v-text</strong>，需解析<strong>HTML结构</strong>使用<strong>v-html</strong>。</li>
+</ol>
+<h2 id="5-v-on（-）"><a href="#5-v-on（-）" class="headerlink" title="5 v-on（@）"></a>5 v-on（@）</h2><ol>
+<li>v-on指令的作用：为元素<strong>绑定事件</strong>；</li>
+<li>事件名不需要写<strong>on</strong>；</li>
+<li>指令可以简写**@**；</li>
+<li>绑定的方法定义在<strong>methods</strong>属性中；</li>
+<li>事件绑定的方法写成<strong>函数调用</strong>的形式，可以<strong>传入自定义参数</strong>；</li>
+<li>定义方法时需要定义<strong>形参</strong>来接收传入的实参；</li>
+<li>事件的后面跟上 <strong>.修饰符</strong> 可以对事件进行限制</li>
+<li><strong>.enter</strong> 可以限制触发的按键为回车。</li>
+</ol>
+<h2 id="6-v-show"><a href="#6-v-show" class="headerlink" title="6 v-show"></a>6 v-show</h2><ol>
+<li>v-show的作用：根据真价值<strong>切换</strong>元素的<strong>显示状态</strong>；</li>
+<li>原理是修改元素的<strong>display</strong>，实现现实隐藏；</li>
+<li>质量后面的内容，最终都会解析为<strong>布尔值</strong>；</li>
+<li>值为<strong>true</strong>元素<strong>显示</strong>，值为<strong>false</strong>元素<strong>隐藏</strong>。</li>
+</ol>
+<h2 id="7-v-if"><a href="#7-v-if" class="headerlink" title="7 v-if"></a>7 v-if</h2><ol>
+<li>v-if指令的作用：根据表达式的真价值切换元素的显示状态；</li>
+<li>本质是通过操作dom元素来切换显示状态</li>
+<li>表达式的值为true，元素存在于dom树中，为false，则从dom树中移除</li>
+</ol>
+<h2 id="8-v-bin"><a href="#8-v-bin" class="headerlink" title="8 v-bin"></a>8 v-bin</h2><ol>
+<li>v-bin指令的作用：为<strong>元素绑定属性</strong>；</li>
+<li><strong>完整</strong>写法：<strong>v-bin:属性名</strong>；</li>
+<li><strong>简写</strong>是省略v-bin，只写保留   <strong>:属性名</strong>。</li>
+</ol>
+<h2 id="9-v-for"><a href="#9-v-for" class="headerlink" title="9 v-for"></a>9 v-for</h2><ol>
+<li>v-for指令的作用：根据数据生成列表结构</li>
+<li>数组经常和v-for结合使用</li>
+<li>语法是：(item,index) in 数据</li>
+<li>item和index可以结合其他指令一起使用</li>
+<li>数组长度的更新会同步到页面上，是响应式的</li>
+</ol>
+<h2 id="10-v-model"><a href="#10-v-model" class="headerlink" title="10 v-model"></a>10 v-model</h2><ol>
+<li>b-model指令的作用：便捷的<strong>设置</strong>和<strong>获取</strong>表单元素的值</li>
+<li>绑定的数据会和表单元素值<strong>相关联</strong></li>
+<li>绑定的数据**&lt;——&gt;**表单元素的值</li>
+</ol>
+<h2 id="11-axios"><a href="#11-axios" class="headerlink" title="11 axios"></a>11 axios</h2><ol>
+<li><strong>axios</strong>必须先导入才可以使用</li>
+<li>使用<strong>get</strong>或<strong>post</strong>方法即可发送对应的请求</li>
+<li><strong>then</strong>方法中的回调函数会在请求<strong>成功</strong>或<strong>失败</strong>时触发</li>
+<li>通过回调函数的形参可以获取响应内容或错误信息</li>
+<li>axios回调函数中的<strong>this已经改变</strong>，无法访问到data中的数据</li>
+<li>把<strong>this保存起来</strong>，回调函数中直接使用保存的this</li>
+<li>和本地应用最大的区别就是改变了<strong>数据来源</strong></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/22/Vue%E8%AF%AD%E6%B3%95/" data-id="ckk7z7cwc0003jchf184674pj" data-title="Vue语法" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-HashMap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/22/HashMap/" class="article-date">
+  <time class="dt-published" datetime="2021-01-22T07:36:29.000Z" itemprop="datePublished">2021-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/22/HashMap/">HashMap</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-为什么要用HashMap"><a href="#1-为什么要用HashMap" class="headerlink" title="1 为什么要用HashMap"></a>1 为什么要用HashMap</h2><ul>
+<li><p>HashMap 是一个<strong>散列桶</strong>（<strong>数组</strong>+<strong>链表</strong>），它存储的内容是键值对 key-value 映射</p>
+</li>
+<li><p>HashMap 采用了数组和链表的数据结构，能在查询和修改方便继承了数组的线性查找和链表的寻址修改</p>
+</li>
+<li><p>HashMap 是<strong>非 synchronized</strong>，所以 HashMap <strong>很快</strong></p>
+</li>
+<li><p>HashMap 可以接受 null 键和值，而 Hashtable 则不能（原因就是 equlas() 方法需要对象，因为 HashMap 是后出的 API 经过处理才可以）</p>
+</li>
+<li><p>HashMap通过<strong>链表的方式</strong>解决<strong>hash碰撞</strong>的，当发生碰撞时，对象会存储在链表的下一个节点中。</p>
+</li>
+</ul>
+<h2 id="2-HashMap-的工作原理"><a href="#2-HashMap-的工作原理" class="headerlink" title="2 HashMap 的工作原理"></a>2 HashMap 的工作原理</h2><h4 id="2-1HashMap-是基于-hashing-的原理"><a href="#2-1HashMap-是基于-hashing-的原理" class="headerlink" title="2.1HashMap 是基于 hashing 的原理"></a>2.1HashMap 是基于 hashing 的原理</h4><blockquote>
+<p>我们使用 <strong>put</strong>(key, value) <strong>存储</strong>对象到 HashMap 中，使用 <strong>get</strong>(key) 从 HashMap 中<strong>获取</strong>对象。当我们给 put() 方法传递键和值时，我们先对键调用 <strong>hashCode()</strong> 方法，计算并返回的 hashCode 是用于找到 Map 数组的 <strong>bucket</strong> 位置来储存 <strong>Node</strong> 对象。</p>
+<p>这里关键点在于指出，HashMap 是在 bucket 中储存键对象和值对象，作为<strong>Map.Node</strong>  </p>
+<p><img src="E:\大学\大三\面试\image\map.jpg"></p>
+</blockquote>
+<h4 id="2-2HashMap-初始化"><a href="#2-2HashMap-初始化" class="headerlink" title="2.2HashMap 初始化"></a>2.2HashMap 初始化</h4><blockquote>
+<p>简化的模拟数据结构： </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Node[] table = new Node[<span class="number">16</span>];</span><br><span class="line">/<span class="regexp">/ 散列桶初始化，</span></span><br><span class="line"><span class="regexp">tableclass Node &#123;   </span></span><br><span class="line"><span class="regexp"> hash; /</span><span class="regexp">/hash值    </span></span><br><span class="line"><span class="regexp"> key; /</span><span class="regexp">/键    </span></span><br><span class="line"><span class="regexp"> value; /</span><span class="regexp">/值    </span></span><br><span class="line"><span class="regexp"> node next; /</span><span class="regexp">/用于指向链表的下一层（产生冲突，用拉链法）</span></span><br><span class="line"><span class="regexp"> &#125;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="2-3-put-过程（JDK1-8）"><a href="#2-3-put-过程（JDK1-8）" class="headerlink" title="2.3 put 过程（JDK1.8）"></a>2.3 put 过程（JDK1.8）</h4><blockquote>
+<ol>
+<li><p>对 Key 求 Hash 值，然后再计算下标</p>
+</li>
+<li><p>如果没有碰撞，直接放入桶中（碰撞的意思是计算得到的 Hash 值相同，需要放到同一个 bucket 中）</p>
+</li>
+<li><p>如果碰撞了，以链表的方式链接到后面</p>
+</li>
+<li><p>如果链表长度超过阀值（TREEIFY THRESHOLD==8），就把链表转成红黑树，链表长度低于6，就把红黑树转回链表</p>
+</li>
+<li><p>如果节点已经存在就替换旧值</p>
+</li>
+<li><p>如果桶满了（容量16 * 加载因子0.75），就需要 resize（扩容2倍后重排）</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="2-4-get-过程"><a href="#2-4-get-过程" class="headerlink" title="2.4 get 过程"></a>2.4 get 过程</h4><blockquote>
+<p><strong>考虑特殊情况：</strong>如果两个键的 hashcode 相同，你如何获取值对象？</p>
+<p>当我们调用 get() 方法，HashMap 会使用键对象的 hashcode 找到 bucket 位置，找到 bucket 位置之后，会调用 keys.equals() 方法去找到链表中正确的节点，最终找到要找的值对象。</p>
+<p><img src="E:\大学\大三\面试\image\get.jpg"></p>
+</blockquote>
+<h2 id="3-减少碰撞"><a href="#3-减少碰撞" class="headerlink" title="3 减少碰撞"></a>3 减少碰撞</h2><h4 id="3-1-扰动函数"><a href="#3-1-扰动函数" class="headerlink" title="3.1 扰动函数"></a>3.1 扰动函数</h4><blockquote>
+<p>原理是如果两个不相等的对象返回不同的 hashcode 的话，那么碰撞的几率就会小些。这就意味着存链表结构减小，这样取值的话就不会频繁调用 equal 方法，从而提高 HashMap 的性能（扰动即 Hash 方法内部的算法实现，目的是让不同对象返回不同 hashcode）。</p>
+</blockquote>
+<h4 id="3-2-使用-final-对象，并且采用合适的-equals-和-hashCode"><a href="#3-2-使用-final-对象，并且采用合适的-equals-和-hashCode" class="headerlink" title="3.2 使用 final 对象，并且采用合适的 equals() 和 hashCode()"></a>3.2 使用 final 对象，并且采用合适的 equals() 和 hashCode()</h4><blockquote>
+<p> 不可变性使得能够缓存不同键的 hashcode，这将提高整个获取对象的速度，使用 String、Integer 这样的 wrapper 类作为键是非常好的选择。 </p>
+</blockquote>
+<h4 id="3-3-为什么-String、Integer-这样的-wrapper-类适合作为键？"><a href="#3-3-为什么-String、Integer-这样的-wrapper-类适合作为键？" class="headerlink" title="3.3 为什么 String、Integer 这样的 wrapper 类适合作为键？"></a>3.3 为什么 String、Integer 这样的 wrapper 类适合作为键？</h4><blockquote>
+<p>因为 String 是 final，而且已经重写了 equals() 和 hashCode() 方法了。不可变性是必要的，因为为了要计算 hashCode()，就要防止键值改变，如果键值在放入时和获取时返回不同的 hashcode 的话，那么就不能从 HashMap 中找到你想要的对象。</p>
+</blockquote>
+<h2 id="4-HashMap-中-hash-函数的实现"><a href="#4-HashMap-中-hash-函数的实现" class="headerlink" title="4 HashMap 中 hash 函数的实现"></a>4 HashMap 中 hash 函数的实现</h2><p>在 hashmap 中要找到某个元素，需要根据 <strong>key</strong> 的 <strong>hash 值</strong>来求得对应数组中的位置。如何计算这个位置就是 hash 算法。 </p>
+<blockquote>
+<p>hashmap 的数据结构是数组和链表的结合，所以我们当然希望这个 hashmap 里面的元素位置尽量的分布均匀些，尽量使得每个位置上的元素数量只有一个。那么当我们用 hash 算法求得这个位置的时候，马上就可以知道对应位置的元素就是我们要的，而不用再去遍历链表。 所以，我们首先想到的就是把 hashcode 对数组长度取模运算。这样一来，元素的分布相对来说是比较均匀的。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="built_in">int</span> hash(<span class="built_in">Object</span> key) &#123;    </span><br><span class="line"> <span class="keyword">if</span> (key == <span class="keyword">null</span>)&#123;       </span><br><span class="line">     <span class="keyword">return</span> <span class="number">0</span>;   </span><br><span class="line"> &#125;    </span><br><span class="line"><span class="built_in">int</span> h;    </span><br><span class="line">h = key.hashCode()；</span><br><span class="line"><span class="comment">//返回散列值也就是hashcode    </span></span><br><span class="line"><span class="comment">// ^ ：按位异或    </span></span><br><span class="line"><span class="comment">// &gt;&gt;&gt;:无符号右移，忽略符号位，空位都以0补齐   </span></span><br><span class="line"><span class="comment">//其中n是数组的长度，即Map的数组部分初始化长度    </span></span><br><span class="line"><span class="keyword">return</span> (n<span class="number">-1</span>)&amp;(h ^ (h &gt;&gt;&gt; <span class="number">16</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="E:\大学\大三\面试\image\hash.jpg"></p>
+<p>简单来说就是：</p>
+<ul>
+<li>高16 bit 不变，低16 bit 和高16 bit 做了一个异或（得到的 hashcode 转化为32位二进制，前16位和后16位低16 bit 和高16 bit 做了一个异或）</li>
+<li>(n·1) &amp; hash = -&gt; 得到下标</li>
+</ul>
+</blockquote>
+<h2 id="5-拉链法导致的链表过深，为什么不用二叉查找树代替而选择红黑树？为什么不一直使用红黑树？"><a href="#5-拉链法导致的链表过深，为什么不用二叉查找树代替而选择红黑树？为什么不一直使用红黑树？" class="headerlink" title="5 拉链法导致的链表过深，为什么不用二叉查找树代替而选择红黑树？为什么不一直使用红黑树？"></a>5 拉链法导致的链表过深，为什么不用二叉查找树代替而选择红黑树？为什么不一直使用红黑树？</h2><p>之所以选择红黑树是为了解决二叉查找树的缺陷：二叉查找树在特殊情况下会变成一条线性结构（这就跟原来使用链表结构一样了，造成层次很深的问题），遍历查找会非常慢。而红黑树在插入新数据后可能需要通过左旋、右旋、变色这些操作来保持平衡。引入红黑树就是为了查找数据快，解决链表查询深度的问题。我们知道红黑树属于平衡二叉树，为了保持“平衡”是需要付出代价的，但是该代价所损耗的资源要比遍历线性链表要少。所以当长度大于8的时候，会使用红黑树；如果链表长度很短的话，根本不需要引入红黑树，引入反而会慢。</p>
+<h2 id="6-红黑树"><a href="#6-红黑树" class="headerlink" title="6 红黑树"></a>6 红黑树</h2><p><img src="E:\大学\大三\面试\image\黑红树.jpg"></p>
+<ol>
+<li><p>每个节点非红即黑</p>
+</li>
+<li><p>根节点总是黑色的</p>
+</li>
+<li><p>如果节点是红色的，则它的子节点必须是黑色的（反之不一定）</p>
+</li>
+<li><p>每个叶子节点都是黑色的空节点（NIL节点）</p>
+</li>
+<li><p>从根节点到叶节点或空子节点的每条路径，必须包含相同数目的黑色节点（即相同的黑色高度）</p>
+</li>
+</ol>
+<h2 id="7-解决-hash-碰撞"><a href="#7-解决-hash-碰撞" class="headerlink" title="7  解决 hash 碰撞"></a>7  解决 hash 碰撞</h2><h3 id="1-开放地址法"><a href="#1-开放地址法" class="headerlink" title="1.开放地址法"></a>1.开放地址法</h3><blockquote>
+<p>开放地址法：当冲突法生时，通过查找数组的一个空位，并将数据填入，而不再用哈希函数得到的数组下表</p>
+<p>简单的理解：就是当发生冲突的时候，比如1和101,1占据了一个位置，101进入时候就向下查找，找到下面的一个空位插入， 如果没有继续查找空位，知道找到为止并进行插入。</p>
+</blockquote>
+<h3 id="2-再哈希法"><a href="#2-再哈希法" class="headerlink" title="2.再哈希法"></a>2.再哈希法</h3><blockquote>
+<p> 当发生冲突时，使用第二个、第三个、哈希函数计算地址，直到无冲突时。缺点：计算时间增加。<br> 比如上面第一次按照姓首字母进行哈希，如果产生冲突可以按照姓字母首字母第二位进行哈希，再冲突，第三位，直到不冲突为止 </p>
+</blockquote>
+<h3 id="3-链地址法（拉链法）"><a href="#3-链地址法（拉链法）" class="headerlink" title="3.链地址法（拉链法）"></a>3.链地址法（拉链法）</h3><blockquote>
+<p><img src="E:\大学\大三\面试\image\链地址.jpg"></p>
+</blockquote>
+<h3 id="4-建立一个公共溢出区"><a href="#4-建立一个公共溢出区" class="headerlink" title="4. 建立一个公共溢出区"></a>4. 建立一个公共溢出区</h3><blockquote>
+<p> 假设哈希函数的值域为[0,m-1],则设向量HashTable[0..m-1]为基本表，另外设立存储空间向量OverTable[0..v]用以存储发生冲突的记录。 </p>
+</blockquote>
+<h2 id="8-HashMap-的大小超过了负载因子（load-factor）定义的容量怎么办"><a href="#8-HashMap-的大小超过了负载因子（load-factor）定义的容量怎么办" class="headerlink" title="8 HashMap 的大小超过了负载因子（load factor）定义的容量怎么办"></a>8 HashMap 的大小超过了负载因子（load factor）定义的容量怎么办</h2><p>HashMap 默认的负载因子大小为0.75。也就是说，当一个 Map 填满了75%的 bucket 时候，和其它集合类一样（如 ArrayList 等），将会创建原来 HashMap 大小的两倍的 bucket 数组来重新调整 Map 大小，并将原来的对象放入新的 bucket 数组中。这个过程叫作 <strong>rehashing</strong>。</p>
+<p>因为它调用 hash 方法找到新的 bucket 位置。这个值只可能在两个地方，一个是原下标的位置，另一种是在下标为 &lt;原下标+原容量&gt; 的位置。</p>
+<h2 id="9-重新调整-HashMap-大小存在什么问题"><a href="#9-重新调整-HashMap-大小存在什么问题" class="headerlink" title="9 重新调整 HashMap 大小存在什么问题"></a>9 重新调整 HashMap 大小存在什么问题</h2><p> 重新调整 HashMap 大小的时候，确实存在条件竞争。 </p>
+<blockquote>
+<p>因为如果两个线程都发现 HashMap 需要重新调整大小了，它们会同时试着调整大小。在调整大小的过程中，存储在链表中的元素的次序会反过来。因为移动到新的 bucket 位置的时候，HashMap 并不会将元素放在链表的尾部，而是放在头部。这是为了避免尾部遍历（tail traversing）。如果条件竞争发生了，那么就死循环了。多线程的环境下不使用 HashMap。</p>
+</blockquote>
+<h2 id="10-为什么多线程会导致死循环，它是怎么发生的"><a href="#10-为什么多线程会导致死循环，它是怎么发生的" class="headerlink" title="10 为什么多线程会导致死循环，它是怎么发生的"></a>10 为什么多线程会导致死循环，它是怎么发生的</h2><p>HashMap 的容量是有限的。当经过多次元素插入，使得 HashMap 达到一定饱和度时，Key 映射位置发生冲突的几率会逐渐提高。这时候， HashMap 需要扩展它的长度，也就是进行Resize。</p>
+<ol>
+<li><strong>扩容：</strong>创建一个新的 Entry 空数组，长度是原数组的2倍</li>
+<li><strong>rehash：</strong>遍历原 Entry 数组，把所有的 Entry 重新 Hash 到新数组</li>
+</ol>
+<h2 id="11-HashTable"><a href="#11-HashTable" class="headerlink" title="11 HashTable"></a>11 HashTable</h2><ul>
+<li><p>数组 + 链表方式存储</p>
+</li>
+<li><p>默认容量：11（质数为宜）</p>
+</li>
+<li><p>put操作：首先进行索引计算 （key.hashCode() &amp; 0x7FFFFFFF）% table.length；若在链表中找到了，则替换旧值，若未找到则继续；当总元素个数超过 容量 * 加载因子 时，扩容为原来 2 倍并重新散列；将新元素加到链表头部</p>
+</li>
+<li><p>对修改 Hashtable 内部共享数据的方法添加了 synchronized，保证线程安全</p>
+</li>
+</ul>
+<h2 id="12-HashMap-和-Hashtable-的区别"><a href="#12-HashMap-和-Hashtable-的区别" class="headerlink" title="12 HashMap 和 Hashtable 的区别"></a>12 HashMap 和 Hashtable 的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">HashMap</th>
+<th align="center">Hashtable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">线程安全</td>
+<td align="center">非线程安全</td>
+<td align="center">线程安全</td>
+</tr>
+<tr>
+<td align="center">空键值</td>
+<td align="center">允许</td>
+<td align="center">不允许</td>
+</tr>
+<tr>
+<td align="center">同步性</td>
+<td align="center">非同步</td>
+<td align="center">同步</td>
+</tr>
+<tr>
+<td align="center">推荐使用</td>
+<td align="center">单线程环境</td>
+<td align="center">不推荐使用<br />多线程使用用 ConcurrentHashMap 替代</td>
+</tr>
+<tr>
+<td align="center">父类</td>
+<td align="center">AbstractMap</td>
+<td align="center">Dictionary</td>
+</tr>
+<tr>
+<td align="center">contains方法</td>
+<td align="center">去掉了，改成<strong>containsValue</strong>和<strong>containsKey</strong>，<br />因为contains方法容易让人引起误解</td>
+<td align="center">保留了contains</td>
+</tr>
+<tr>
+<td align="center">key和value是否允许null值</td>
+<td align="center">允许</td>
+<td align="center">不允许</td>
+</tr>
+<tr>
+<td align="center">遍历方式</td>
+<td align="center">Iterator</td>
+<td align="center">Enumeration</td>
+</tr>
+<tr>
+<td align="center">hash值</td>
+<td align="center">重新计算hash值</td>
+<td align="center">使用对象的hashCode##</td>
+</tr>
+</tbody></table>
+<h2 id="13-CocurrentHashMap-可以代替-Hashtable-吗"><a href="#13-CocurrentHashMap-可以代替-Hashtable-吗" class="headerlink" title="13 CocurrentHashMap 可以代替 Hashtable 吗"></a>13 CocurrentHashMap 可以代替 Hashtable 吗</h2><ul>
+<li><p>ConcurrentHashMap 当然可以代替 HashTable，但是 HashTable 提供更强的线程安全性</p>
+</li>
+<li><p>我们知道 Hashtable 是 synchronized 的，但是 ConcurrentHashMap 同步性能更好，因为它仅仅根据同步级别对 map 的一部分进行上锁</p>
+</li>
+<li><p>它们都可以用于多线程的环境，但是当 Hashtable 的大小增加到一定的时候，性能会急剧下降，因为迭代时需要被锁定很长的时间。由于 ConcurrentHashMap 引入了分割（segmentation），不论它变得多么大，仅仅需要锁定 Map 的某个部分，其它的线程不需要等到迭代完成才能访问 Map。简而言之，在迭代的过程中，ConcurrentHashMap 仅仅锁定 Map 的某个部分，而 Hashtable 则会锁定整个 Map</p>
+</li>
+</ul>
+<h2 id="14-CocurrentHashMap（JDK-1-7）"><a href="#14-CocurrentHashMap（JDK-1-7）" class="headerlink" title="14 CocurrentHashMap（JDK 1.7）"></a>14 CocurrentHashMap（JDK 1.7）</h2><p><img src="E:\大学\大三\面试\image\co1.7.jpg"></p>
+<ul>
+<li><p>ConcurrentHashMap是由<strong>Segment数组</strong>+<strong>HashEntry数组</strong>+<strong>链表</strong>结构组成。Segment是一种可重入锁<strong>ReentrantLock</strong>，在ConcurrentHashMap里扮演锁的角色，HashEntry则用于<strong>存储键值对数据</strong>。一个ConcurrentHashMap里包含一个Segment数组，Segment的结构和HashMap类似，是一种数组和链表结构， 一个Segment里包含一个HashEntry数组，每个HashEntry是一个链表结构的元素， 每个Segment守护者一个HashEntry数组里的元素,当对HashEntry数组的数据进行修改时，必须首先获得它对应的Segment锁。</p>
+</li>
+<li><p>Segment 是基于重入锁（ReentrantLock）：一个数据段竞争锁。每个 HashEntry 一个链表结构的元素，利用 Hash 算法得到索引确定归属的数据段，也就是对应到在修改时需要竞争获取的锁。ConcurrentHashMap 支持 CurrencyLevel（Segment 数组数量）的线程并发。每当一个线程占用锁访问一个 Segment 时，不会影响到其他的 Segment</p>
+</li>
+</ul>
+<ul>
+<li>核心数据如 value，以及链表都是 volatile 修饰的，保证了获取时的可见性</li>
+</ul>
+<ul>
+<li><p>ConcurrentHashMap有3个参数：</p>
+<blockquote>
+<p>·    initialCapacity：初始总容量，默认16</p>
+<p>·    loadFactor：加载因子，默认0.75</p>
+<p>·    concurrencyLevel：并发级别，默认16</p>
+</blockquote>
+</li>
+<li><h3 id="put过程"><a href="#put过程" class="headerlink" title="put过程"></a>put过程</h3><blockquote>
+<ol>
+<li><p>首先根据key计算出一个hash值，找到对应的Segment</p>
+</li>
+<li><p>调用Segment的lock方法，为后面的put操作加锁</p>
+</li>
+<li><p>根据key计算出hash值，找到Segment中数组中对应index的链表，并将该数据放置到该链表中</p>
+</li>
+<li><p>判断当前Segment包含元素的数量大于阈值，则Segment进行扩容</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><h3 id="get过程"><a href="#get过程" class="headerlink" title="get过程"></a>get过程</h3><blockquote>
+<ol>
+<li><p><strong>根据key计算出对应的segment</strong></p>
+</li>
+<li><p>再根据key计算出对应segment中数组的index</p>
+</li>
+<li><p><strong>最终遍历上述index位置的链表，查找出对应的key的value</strong></p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h2 id="15-CocurrentHashMap（JDK-1-8）"><a href="#15-CocurrentHashMap（JDK-1-8）" class="headerlink" title="15  CocurrentHashMap（JDK 1.8）"></a>15  CocurrentHashMap（JDK 1.8）</h2><p> CocurrentHashMap 抛弃了原有的 Segment 分段锁， 用Node数组+链表+红黑树的数据结构来实现 ，采用了 CAS + synchronized 来保证并发安全性。其中的 val next 都用了 volatile 修饰，保证了可见性。</p>
+<h4 id="15-1-最大特点是引入了-CAS"><a href="#15-1-最大特点是引入了-CAS" class="headerlink" title="15.1 最大特点是引入了 CAS"></a>15.1 最大特点是引入了 CAS</h4><blockquote>
+<p>CAS是compare and swap的缩写，即我们所说的比较交换。cas是一种<strong>基于锁的操作</strong>，而且是<strong>乐观锁</strong>。在java中锁分为乐观锁和悲观锁。<strong>悲观锁</strong>是<strong>将资源锁住</strong>，等一个之前获得锁的线程释放锁之后，下一个线程才可以访问。而乐观锁采取了一种<strong>宽泛的态度</strong>，通过某种方式不加锁来处理资源，比如通过给记录加version来获取数据，性能较悲观锁有很大的提高。</p>
+<p>借助 Unsafe 来实现 native code。CAS有3个操作数，内存值 V、旧的预期值 A、要修改的新值 B。当且仅当预期值 A 和内存值 V 相同时，将内存值V修改为 B，否则什么都不做。Unsafe 借助 CPU 指令 cmpxchg 来实现。</p>
+</blockquote>
+<h4 id="15-2-CAS-使用实例"><a href="#15-2-CAS-使用实例" class="headerlink" title="15.2 CAS 使用实例"></a>15.2 CAS 使用实例</h4><blockquote>
+<p>对 sizeCtl 的控制都是用 CAS 来实现的：</p>
+<ul>
+<li>-1 代表 table 正在初始化</li>
+<li>N 表示有 -N-1 个线程正在进行扩容操作</li>
+<li>如果 table 未初始化，表示table需要初始化的大小</li>
+<li>如果 table 初始化完成，表示table的容量，默认是table大小的0.75倍，用这个公式算 0.75（n – (n &gt;&gt;&gt; 2)）</li>
+</ul>
+</blockquote>
+<h4 id="15-3-CAS-会出现的问题：ABA"><a href="#15-3-CAS-会出现的问题：ABA" class="headerlink" title="15.3 CAS 会出现的问题：ABA"></a>15.3 CAS 会出现的问题：ABA</h4><blockquote>
+<p> <strong>解决：</strong>对变量增加一个版本号，每次修改，版本号加 1，比较的时候比较版本号。 </p>
+</blockquote>
+<h4 id="15-4-put-过程"><a href="#15-4-put-过程" class="headerlink" title="15.4 put 过程"></a>15.4 put 过程</h4><blockquote>
+<ul>
+<li><p>根据 key 计算出 hashcode</p>
+</li>
+<li><p>判断是否需要进行初始化</p>
+</li>
+<li><p>通过 key 定位出的 Node，如果为空表示当前位置可以写入数据，利用 CAS 尝试写入，失败则自旋保证成功</p>
+</li>
+<li><p>如果当前位置的 hashcode == MOVED == -1,则需要进行扩容</p>
+</li>
+<li><p>如果都不满足，则利用 synchronized 锁写入数据</p>
+</li>
+<li><p>如果数量大于 TREEIFY_THRESHOLD 则要转换为红黑树</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="15-5-get-过程"><a href="#15-5-get-过程" class="headerlink" title="15.5 get 过程"></a>15.5 get 过程</h4><blockquote>
+<ul>
+<li>根据计算出来的 hashcode 寻址，如果就在桶上那么直接返回值</li>
+<li>如果是红黑树那就按照树的方式获取值</li>
+<li>就不满足那就按照链表的方式遍历获取值</li>
+</ul>
+</blockquote>
+<h4 id="15-6-sizeCtl"><a href="#15-6-sizeCtl" class="headerlink" title="15.6 sizeCtl"></a>15.6 sizeCtl</h4><blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">volatile</span> <span class="keyword">int</span> sizeCtl;<span class="comment">//控制标识符</span></span><br></pre></td></tr></table></figure>
+
+<p>transient是Java语言的关键字，用来表示一个域不是该对象序列化的一部分。当一个对象被序列化的时候，transient型变量的值不包括在序列化的表示中，然而非transient型的变量是被包括进去的。  </p>
+<p>sizeCtl是控制标识符，不同的值表示不同的意义：</p>
+<ul>
+<li><p><strong>负数</strong>代表正在进行<strong>初始化</strong>或<strong>扩容</strong>操作 ,其中**-1<strong>代表</strong>正在初始化** ,<strong>-N</strong> 表示有<strong>N-1个线程正在进行扩容操作</strong></p>
+</li>
+<li><p><strong>正数</strong>或<strong>0</strong>代表<strong>hash表还没有被初始化</strong>，这个数值表示初始化或下一次进行扩容的大小，类似于扩容阈值。它的值始终是当前ConcurrentHashMap容量的0.75倍，表示阈值，实际容量&gt;=sizeCtl，则扩容。</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="15-7-1-7和-18的比较"><a href="#15-7-1-7和-18的比较" class="headerlink" title="15.7 1.7和.18的比较"></a>15.7 1.7和.18的比较</h4><blockquote>
+<p>1.数据结构：1.8取消了Segment分段锁的数据结构，取而代之的是数组+链表+红黑树的结构。</p>
+<p>2.保证线程安全机制：JDK1.7采用segment的分段锁机制实现线程安全，其中segment继承自ReentrantLock。JDK1.8采用CAS+Synchronized保证线程安全。</p>
+<p>3.锁的粒度：原来是对需要进行数据操作的Segment加锁，现调整为对每个数组元素加锁（Node）。</p>
+<p>4.链表转化为红黑树:定位结点的hash算法简化会带来弊端,Hash冲突加剧,因此1.8在链表节点数量大于8时，会将链表转化为红黑树进行存储。</p>
+<p>5.查询时间复杂度：从原来的遍历链表O(n)，变成遍历红黑树O(logN)。</p>
+</blockquote>
+<h2 id="16-HashMap的长度为什么是2的倍数"><a href="#16-HashMap的长度为什么是2的倍数" class="headerlink" title="16 HashMap的长度为什么是2的倍数"></a>16 HashMap的长度为什么是2的倍数</h2><p>在HashMap的操作流程中，首先会对key进行hash算法得到一个索引值，这个索引值就是对应哈希桶数组的索引。为了得到这个索引值必须对扰动后的数跟数组长度进行取余运算。即 hash % n (n为hashmap的长度)，又因为&amp;比%运算快。n如果为2的倍数，就可以将%转换为&amp;，结果就是 hash &amp; (n-1)。所以这就解释了为什么HashMap长度是2的倍数。</p>
+<h2 id="17-Jdk1-8中满足什么条件后将链表转化成红黑树"><a href="#17-Jdk1-8中满足什么条件后将链表转化成红黑树" class="headerlink" title="17 Jdk1.8中满足什么条件后将链表转化成红黑树"></a>17 Jdk1.8中满足什么条件后将链表转化成红黑树</h2><p> 很显然在putVal方法中是判断桶内的节点个数是否大于8，之后通过treeifyBin方法中判断长度是否大于最小红黑树容量64,小于则继续扩容，大于则转为红黑树。 </p>
+<h2 id="18-如何决定使用-HashMap-还是-TreeMap"><a href="#18-如何决定使用-HashMap-还是-TreeMap" class="headerlink" title="18.如何决定使用 HashMap 还是 TreeMap"></a>18.如何决定使用 HashMap 还是 TreeMap</h2><p> 对于在Map中<strong>插入</strong>、<strong>删除</strong>和<strong>定位</strong>元素这类操作，<strong>HashMap</strong>是最好的选择。然而，假如你需要对一个有序的key集合进行<strong>遍历</strong>，<strong>TreeMap</strong>是更好的选择。基于你的collection的大小，也许向HashMap中添加元素会更快，将map换为TreeMap进行有序key的遍历。 </p>
+<h2 id="19-HashMap-的实现原理"><a href="#19-HashMap-的实现原理" class="headerlink" title="19.HashMap 的实现原理"></a>19.HashMap 的实现原理</h2><p>HashMap<strong>概述</strong>： HashMap 基于 <strong>Hash 算法实现</strong>的，我们通过 <strong>put(key,value)存储</strong>，<strong>get(key)来获取</strong>。当传入 key 时，HashMap 会根据 <strong>key. hashCode()</strong> 计算出 hash 值，根据 hash 值将 value 保存在 <strong>bucket</strong> 里。当计算出的 hash 值相同时，我们称之为 <strong>hash 冲突</strong>，HashMap 的做法是用链表和红黑树存储相同 hash 值的 value。当 hash <strong>冲突的个数比较少</strong>时，使用<strong>链表</strong>否则使用<strong>红黑树</strong>。 </p>
+<p>HashMap的<strong>数据结构</strong>： 在java编程语言中，最基本的结构就是两种，一个是数组，另外一个是模拟指针（引用），所有的数据结构都可以用这两个基本结构来构造的，HashMap也不例外。HashMap实际上是一个“<strong>链表散列</strong>”的数据结构，即<strong>数组和链表</strong>的结合体。 </p>
+<h2 id="20-HashSet-的实现原理"><a href="#20-HashSet-的实现原理" class="headerlink" title="20.HashSet 的实现原理"></a>20.HashSet 的实现原理</h2><ol>
+<li> HashSet 是基于 HashMap 实现的， 底层由HashMap实现 ， 实际上是一个HashMap实例 </li>
+<li> HashSet的值存放于HashMap的key上 </li>
+<li> HashSet 不允许重复的值 ， 允许使用null元素 </li>
+<li> HashMap的value统一为PRESENT ， private static final Object PRESENT = new Object(); </li>
+</ol>
+<h2 id="21-两个对象的hashCode相等时会怎么样"><a href="#21-两个对象的hashCode相等时会怎么样" class="headerlink" title="21  两个对象的hashCode相等时会怎么样"></a>21  <strong>两个对象的hashCode相等时会怎么样</strong></h2><p>会产生哈希碰撞，若key值相同则替换旧值，不然链接到链表后面，链表长度超过阙值8就转为红黑树存储</p>
+<h2 id="22-如果两个键的hashcode相同，你如何获取值对象"><a href="#22-如果两个键的hashcode相同，你如何获取值对象" class="headerlink" title="22  如果两个键的hashcode相同，你如何获取值对象"></a>22  <strong>如果两个键的hashcode相同，你如何获取值对象</strong></h2><p>HashCode相同，通过equals比较内容获取值对象</p>
+<h2 id="23-HashMap的参数loadFactor-的作用"><a href="#23-HashMap的参数loadFactor-的作用" class="headerlink" title="23  HashMap的参数loadFactor 的作用"></a>23  <strong>HashMap的参数loadFactor</strong> 的作用</h2><p>loadFactor表示HashMap的拥挤程度，影响hash操作到同一个数组位置的概率。默认loadFactor等于0.75，当HashMap里面容纳的元素已经达到HashMap数组长度的75%时，表示HashMap太挤了，需要扩容，在HashMap的构造器中可以定制loadFactor。</p>
+<h2 id="24-传统hashMap的缺点-为什么引入红黑树？"><a href="#24-传统hashMap的缺点-为什么引入红黑树？" class="headerlink" title="24  传统hashMap的缺点(为什么引入红黑树？)"></a>24  <strong>传统hashMap的缺点(为什么引入红黑树？)</strong></h2><p> JDK 1.8 以前 HashMap 的实现是 数组+链表，即使哈希函数取得再好，也很难达到元素百分百均匀分布。当 HashMap 中有大量的元素都存放到同一个桶中时，这个桶下有一条长长的链表，这个时候 HashMap 就相当于一个单链表，假如单链表有 n 个元素，遍历的时间复杂度就是 O(n)，完全失去了它的优势。针对这种情况，JDK 1.8 中引入了 红黑树（查找时间复杂度为 O(logn)）来优化这个问题。 </p>
+<h2 id="25-HashMap一般使用什么类型的元素作为Key"><a href="#25-HashMap一般使用什么类型的元素作为Key" class="headerlink" title="25  HashMap一般使用什么类型的元素作为Key"></a>25  HashMap一般使用什么类型的元素作为Key</h2><p>选择Integer，String这种不可变的类型，像对String的一切操作都是新建一个String对象，对新的对象进行拼接分割等，这些类已经很规范的覆写了hashCode()以及equals()方法。作为不可变类天生是线程安全的， </p>
+<h2 id="26-Volatile"><a href="#26-Volatile" class="headerlink" title="26 Volatile"></a>26 Volatile</h2><p> volatile 声明的变量可以保证多线程对这个变量的<strong>可见性</strong>， 但<strong>不能保证变量的原子性</strong> 。被称为轻量级的 synchronized, 它比synchronized的使用和执行成本会更低，因为它不会引起线程的阻塞从而导致线程上下文的切换和调度。 </p>
+<h3 id="1-volatile-的内存语义"><a href="#1-volatile-的内存语义" class="headerlink" title="1 volatile 的内存语义"></a>1 volatile 的内存语义</h3><blockquote>
+<ul>
+<li><p>当<strong>写</strong>一个volatile变量时，JMM会把该线程对应的<strong>本地内存</strong>中的<strong>共享变量</strong>值<strong>刷新到主内存</strong>.</p>
+</li>
+<li><p>当<strong>读</strong>一个volatile变量时，JMM会把该线程对应的本地内存<strong>置为无效</strong>。线程接下来将从主内存中读取共享变量,并<strong>更新本地内存的值</strong>.</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="2-volatile-的特性"><a href="#2-volatile-的特性" class="headerlink" title="2 volatile 的特性"></a>2 volatile 的特性</h3><blockquote>
+<ul>
+<li><p><strong>可见性</strong> : 对一个volatile的变量的读,总是能<strong>看到任意线程</strong>对这个变量<strong>最后的写入</strong>.</p>
+</li>
+<li><p><strong>单个读或者写具有原子性</strong> : 对于单个volatile变量的读或者写具有原子性,复合操作不具有.(如i++)</p>
+</li>
+<li><p><strong>互斥性</strong> : 同一时刻只允许一个线程对变量进行操作.(互斥锁的特点)</p>
+</li>
+</ul>
+<p>对于单步操作的 volatile 具有锁的特点. </p>
+</blockquote>
+<h3 id="3-禁止指令重排"><a href="#3-禁止指令重排" class="headerlink" title="3  禁止指令重排"></a>3  禁止指令重排</h3><ol>
+<li><p>指令重排：JVM 在编译 Java 代码时或 CPU 在执行 JVM 字节码时，对现有指令顺序进行重新排序，优化程序的运行效率。（在不改变程序执行结果的前提下） </p>
+</li>
+<li><p><strong>内存屏障</strong> ： 是一种屏障指令，使 CPU 或编译器对屏障指令之前和之后发出的内存操作执行一个排序的约束。 </p>
+</li>
+<li><p>内存屏障类型LoadLoad 屏障、StoreStore 屏障、LoadStore 屏障、StoreLoad 屏障。（Load 代表读取指令、Store 代表写入操作）</p>
+</li>
+<li><p>在 volatile 变量上的体现：（JVM 执行操作）</p>
+<blockquote>
+<ul>
+<li>在每个 volatile 写入操作前插入 StoreStore 屏障；</li>
+<li>在每个 volatile在写操作后插入 StoreLoad 屏障；</li>
+<li>在每个 volatile在读操作前插入 LoadLoad 屏障；</li>
+<li>在每个 volatile在读操作后插入 LoadStore 屏障；</li>
+</ul>
+</blockquote>
+</li>
+<li><p>volatile写内存屏障</p>
+</li>
+</ol>
+<p>StoreStore 屏障 可以保证在volatile写之前，其前面的所有普通写操作已经对任<br> 意处理器可见了。</p>
+<p>StoreLoad 屏障将 volatile写操作刷新到内存.</p>
+<p>由此达到, volatile写 立马刷新到主内存的效果.</p>
+<ol start="6">
+<li><h4 id="volatile读内存屏障"><a href="#volatile读内存屏障" class="headerlink" title="volatile读内存屏障"></a>volatile读内存屏障</h4></li>
+</ol>
+<p><img src="E:\大学\大三\面试\image\volatiler.webp"></p>
+<p>LoadLoad 屏障 保障后续是读操作时, volatile读装载到内存数据.<br>LoadStore 屏障保障后续是写操作时, volatile读装载到内存数据.</p>
+<p>由此达到, volatile读 从主内存中读取共享变量,并更新本地内存的值.</p>
+<h2 id="27-Synchronized"><a href="#27-Synchronized" class="headerlink" title="27 Synchronized"></a>27 Synchronized</h2><p>synchronized可以保证方法或者代码块在运行时，同一时刻只有一个方法可以进入到临界区，同时它还可以保证共享变量的内存可见性</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/22/HashMap/" data-id="ckk7z7cwj000ajchf4o0bdcyq" data-title="HashMap" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-多线程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/22/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2021-01-22T07:35:23.000Z" itemprop="datePublished">2021-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/22/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-并发和并行的区别"><a href="#1-并发和并行的区别" class="headerlink" title="1.并发和并行的区别"></a>1.并发和并行的区别</h2><ul>
+<li><p>并发： 两个或多个事件在同一时间间隔发生 。</p>
+</li>
+<li><p>并行： 指两个或者多个事件在同一时刻发生 。</p>
+</li>
+<li><p>并行是在不同实体上的多个事件，并发是在同一实体上的多个事件。 </p>
+</li>
+</ul>
+<h2 id="2-线程和进程的区别"><a href="#2-线程和进程的区别" class="headerlink" title="2. 线程和进程的区别"></a>2. 线程和进程的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">线程</th>
+<th align="center">进程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">根本区别</td>
+<td align="center">程序执行的最小单位</td>
+<td align="center">资源分配最小单位</td>
+</tr>
+<tr>
+<td align="center">地址空间</td>
+<td align="center">同一进程的线程共享本进程的地址空间</td>
+<td align="center">独立的地址空间</td>
+</tr>
+<tr>
+<td align="center">资源拥有</td>
+<td align="center">同一进程内的线程共享本进程的资源</td>
+<td align="center">独立资源</td>
+</tr>
+<tr>
+<td align="center">系统开销</td>
+<td align="center">开销小</td>
+<td align="center">开销大</td>
+</tr>
+<tr>
+<td align="center">影响关系</td>
+<td align="center">一个线程崩溃整个进程都死掉</td>
+<td align="center">一个进程崩溃，在保护模式下<br />不会对其他进程产生影响</td>
+</tr>
+</tbody></table>
+<h2 id="3-守护线程"><a href="#3-守护线程" class="headerlink" title="3.守护线程"></a>3.守护线程</h2><p> <strong>守护线程</strong>（即daemon thread），是个<strong>服务线程</strong>，准确地来说就是<strong>服务其他的线程</strong>。  是运行在后台的一种特殊进程。它独立于控制终端并且<strong>周期性地执行某种任务</strong>或<strong>等待处理某些发生的事件</strong>。在 Java 中<strong>垃圾回收线程</strong>就是特殊的守护线程。 </p>
+<h2 id="4-线程的创建方式"><a href="#4-线程的创建方式" class="headerlink" title="4.线程的创建方式"></a>4.线程的创建方式</h2><p>①. 继承<strong>Thread</strong>类创建线程类</p>
+<p>定义Thread类的子类，并重写该类的run方法，该run方法的方法体就代表了线程要完成的任务。因此把run()方法称为执行体。<br>创建Thread子类的实例，即创建了线程对象。<br>调用线程对象的start()方法来启动该线程。</p>
+<p>②. 通过<strong>Runnable</strong>接口创建线程类</p>
+<p>定义runnable接口的实现类，并重写该接口的run()方法，该run()方法的方法体同样是该线程的线程执行体。<br>创建 Runnable实现类的实例，并依此实例作为Thread的target来创建Thread对象，该Thread对象才是真正的线程对象。<br>调用线程对象的start()方法来启动该线程。</p>
+<p>③. 通过<strong>Callable</strong>和<strong>Future Task</strong> 创建线程</p>
+<p>创建Callable接口的实现类，并实现call()方法，该call()方法将作为线程执行体，并且<strong>有返回值</strong>。<br>创建Callable实现类的实例，使用FutureTask类来包装Callable对象，该FutureTask对象封装了该Callable对象的call()方法的返回值。<br>使用FutureTask对象作为Thread对象的target创建并启动新线程。<br>调用FutureTask对象的get()方法来获得子线程执行结束后的返回值。</p>
+<h2 id="5-runnable-和-callable-的区别"><a href="#5-runnable-和-callable-的区别" class="headerlink" title="5.runnable 和 callable 的区别"></a>5.<strong>runnable 和 callable</strong> 的区别</h2><ul>
+<li><strong>Runnable</strong>接口中的run()方法的返回值是<strong>void</strong>，它做的事情只是纯粹地去执行run()方法中的代码而已；</li>
+<li><strong>Callable</strong>接口中的call()方法是<strong>有返回值</strong>的，是一个<strong>泛型</strong>，和Future、FutureTask配合可以用来获取异步执行的结果。</li>
+<li>callable 可以看作是 <strong>runnable 的补充</strong> </li>
+</ul>
+<h2 id="6-线程的状态"><a href="#6-线程的状态" class="headerlink" title="6.线程的状态"></a>6.线程的状态</h2><p><strong>1. 新建状态(New):</strong> 线程对象被创建后，就进入了新建状态。例如，Thread thread = new Thread()</p>
+<p><strong>2. 就绪状态(Runnable):</strong> 也被称为“可执行状态”。线程对象被创建后，其它线程调用了该对象的**start()**方法，从而来启动该线程。例如，thread.start()。处于就绪状态的线程，随时可能被CPU调度执行</p>
+<p><strong>3. 运行状态(Running):</strong> 线程获取CPU权限进行执行。需要注意的是，线程只能从就绪状态进入到运行状态。</p>
+<p><strong>4. 阻塞状态(Blocked):</strong> 阻塞状态是线程因为某种原因放弃CPU使用权，暂时停止运行。直到线程进入就绪状态，才有机会转到运行状态。阻塞的情况分三种：</p>
+<ul>
+<li>(01) <strong>等待</strong>阻塞 – 通过调用线程的**wait()**方法，让线程等待某工作的完成。</li>
+<li>(02) <strong>同步</strong>阻塞 – 线程在获取<strong>synchronized</strong>同步锁失败(因为锁被其它线程所占用)，它会进入同步阻塞状态。</li>
+<li>(03) <strong>其他</strong>阻塞 – 通过调用线程的<strong>sleep()**或</strong>join()**或发出了I/O请求时，线程会进入到阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入就绪状态。</li>
+</ul>
+<p><strong>5. 死亡状态(Dead):</strong> 线程执行完了或者因异常**退出了run()**方法，该线程结束生命周期。</p>
+<h2 id="7-sleep-和-wait-的区别"><a href="#7-sleep-和-wait-的区别" class="headerlink" title="7. sleep() 和 wait() 的区别"></a>7. sleep() 和 wait() 的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">sleep()</th>
+<th align="center">wait()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">类</td>
+<td align="center">Thread</td>
+<td align="center">Object</td>
+</tr>
+<tr>
+<td align="center">锁</td>
+<td align="center">不释放锁</td>
+<td align="center">释放锁</td>
+</tr>
+<tr>
+<td align="center">用法</td>
+<td align="center">时间到会自动恢复</td>
+<td align="center">使用 notify()/ notifyAll()直接唤醒</td>
+</tr>
+</tbody></table>
+<h2 id="8-notify-和-notifyAll-的区别"><a href="#8-notify-和-notifyAll-的区别" class="headerlink" title="8. notify()和 notifyAll() 的区别"></a>8. notify()和 notifyAll() 的区别</h2><p> notifyAll()会唤醒<strong>所有的线程</strong>，notify()之后唤醒<strong>一个线程</strong>。notifyAll() 调用后，会将全部线程由<strong>等待池</strong>移到<strong>锁池</strong>，然后参与锁的竞争，竞争成功则继续执行，如果不成功则留在锁池等待锁被释放后再次参与竞争。而 notify()只会唤醒一个线程，具体唤醒哪一个线程由虚拟机控制。 </p>
+<h2 id="9-线程的-run-和-start-的区别"><a href="#9-线程的-run-和-start-的区别" class="headerlink" title="9.线程的 run() 和 start() 的区别"></a>9.线程的 run() 和 start() 的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">run()</th>
+<th align="center">start()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">功能</td>
+<td align="center">执行线程的运行代码</td>
+<td align="center">启动线程</td>
+</tr>
+</tbody></table>
+<h2 id="10-线程池"><a href="#10-线程池" class="headerlink" title="10 线程池"></a>10 线程池</h2><ol>
+<li>线程池的概念：</li>
+</ol>
+<p>​        线程池就是首先创建一些线程，它们的<strong>集合</strong>称为线程池。使用线程池可以很好地<strong>提高性能</strong>，线程池在系统启动时即创建大量空闲的线程，程序将一个任务传给线程池，线程池就会启动一条线程来执行这个任务，执行结束以后，该线程并<strong>不会死亡</strong>，而是再次返回线程池中成为<strong>空闲状态</strong>，等待执行下一个任务。</p>
+<ol start="2">
+<li>线程池的工作机制</li>
+</ol>
+<p>​     2.1 在线程池的编程模式下，<strong>任务</strong>是提交给<strong>整个线程池</strong>，而不是直接提交给某个线程，线程池在拿到任务后，就在内部寻找是否有空闲的线程，如果有，则将任务交给某个空闲的线程。</p>
+<p>​     2.1 一个线程同时只能执行一个任务，但可以同时向一个线程池提交多个任务。</p>
+<ol start="3">
+<li>使用线程池的原因：</li>
+</ol>
+<p>​    多线程运行时间，系统不断的启动和关闭新线程，<strong>成本非常高</strong>，<strong>会过渡消耗系统资源</strong>，以及<strong>过渡切换线程的危险</strong>，从而可能导致系统资源的<strong>崩溃</strong>。这时，线程池就是最好的选择了。</p>
+<h2 id="11-线程池的创建方式"><a href="#11-线程池的创建方式" class="headerlink" title="11. 线程池的创建方式"></a>11. 线程池的创建方式</h2><p>①new<strong>Fixed</strong>ThreadPool(int nThreads)</p>
+<p>创建一个<strong>固定长度</strong>的线程池，每当<strong>提交一个任务</strong>就<strong>创建一个线程</strong>，直到达到线程池的最大数量，这时线程规模将不再变化，当线程发生未预期的错误而结束时，线程池会补充一个新的线程。</p>
+<p>②new<strong>Cached</strong>ThreadPool()</p>
+<p>创建一个<strong>可缓存</strong>的线程池，如果线程池的<strong>规模超过了处理需求</strong>，将<strong>自动回收空闲线程</strong>，而当<strong>需求增加时</strong>，则可以<strong>自动添加新线程</strong>，线程池的规模不存在任何限制。</p>
+<p>③new<strong>Single</strong>Thread<strong>Executor</strong>()</p>
+<p>这是一个<strong>单线程的Executor</strong>，它创建<strong>单个工作线程</strong>来执行任务，如果这个线程<strong>异常结束</strong>，会创建一个<strong>新的来替代</strong>它；它的特点是能确保依照任务在队列中的<strong>顺序</strong>来<strong>串行执行</strong>。</p>
+<p>④.new<strong>Scheduled</strong>ThreadPool(int corePoolSize)</p>
+<p>创建了一个<strong>固定长度</strong>的线程池，而且以<strong>延迟</strong>或<strong>定时</strong>的方式来执行任务，类似于Timer。</p>
+<p>⑤ new<strong>WorkStealing</strong>Pool(int parallelism</p>
+<p>这是一个经常被人忽略的线程池，Java 8 才加入这个创建方法，其内部会构建<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/ForkJoinPool.html">ForkJoinPool</a>，利用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Work_stealing">Work-Stealing</a>算法，并行地处理任务，<strong>不保证处理顺序</strong>。 </p>
+<h2 id="12-线程池的状态"><a href="#12-线程池的状态" class="headerlink" title="12 线程池的状态"></a>12 线程池的状态</h2><p><img src="E:\大学\大三\面试\image\线程池状态.jpg"></p>
+<ol>
+<li><p>Running： 这是<strong>最正常</strong>的状态，接受新的任务，处理等待队列中的任务 </p>
+</li>
+<li><p>ShutDown： <strong>不接受新的任务</strong>提交，但是会<strong>继续处理等待队列中的任务</strong>。 </p>
+</li>
+<li><p>Stop： 不接受新的任务提交，不再处理等待队列中的任务，<strong>中断正在执行任务的线程</strong>。 </p>
+</li>
+<li><p>Tidying： <strong>所有的任务都销毁</strong>了，<strong>workCount</strong> 为 <strong>0</strong>，线程池的状态在转换为 TIDYING 状态时，会执行<strong>钩子方法</strong> **terminated()**。 </p>
+</li>
+<li><p>Terminated：  <strong>terminated()方法结束后</strong>，线程池的状态就会变成这个。 </p>
+</li>
+</ol>
+<h2 id="13-线程池中-submit-和-execute-的区别"><a href="#13-线程池中-submit-和-execute-的区别" class="headerlink" title="13 线程池中 submit() 和 execute()的区别"></a>13 线程池中 submit() 和 execute()的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">submit()</th>
+<th align="center">execute()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">返回值</td>
+<td align="center">有返回值</td>
+<td align="center">没有返回值</td>
+</tr>
+<tr>
+<td align="center">定义的接口</td>
+<td align="center">ExecutorService</td>
+<td align="center">Executor</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="14-在-Java-程序中怎么保证多线程的运行安全"><a href="#14-在-Java-程序中怎么保证多线程的运行安全" class="headerlink" title="14 在 Java 程序中怎么保证多线程的运行安全"></a>14 在 Java 程序中怎么保证多线程的运行安全</h2><ul>
+<li>原子性： 一个程序要么完整的被执行,要么完全不执行 ，（atomic,synchronized）；</li>
+<li>可见性：一个线程对主内存的修改可以及时地被其他线程看到，（synchronized,volatile）；</li>
+<li>有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序，该观察结果一般杂乱无序，（happens-before原则）。</li>
+</ul>
+<h2 id="15-多线程锁的升级原理"><a href="#15-多线程锁的升级原理" class="headerlink" title="15  多线程锁的升级原理"></a>15  <strong>多线程锁的升级原理</strong></h2><p><img src="E:\大学\大三\面试\image\锁.jpg"></p>
+<p> 在Java中，锁共有4种状态，级别从低到高依次为：无状态锁，偏向锁，轻量级锁和重量级锁状态，这几个状态会随着竞争情况逐渐升级。锁<strong>可以升级</strong>但<strong>不能降级</strong>。 </p>
+<h2 id="16-竞争进程面临三个控制问题"><a href="#16-竞争进程面临三个控制问题" class="headerlink" title="16 竞争进程面临三个控制问题"></a>16 竞争进程面临三个控制问题</h2><p>（1）<strong>互斥</strong>：当一个进程在<strong>临界区</strong>访问共享资源时，其他进程不能进入该临界区访问该资源。<br>（2）<strong>死锁</strong>：两个或两个以上的进程因每个进程都在<strong>等待</strong>其他进程做完某些事情<strong>而不能继续执行</strong>。<br>（3）<strong>饥饿</strong>：一个可运行的进程尽管能继续执行，但<strong>被</strong>调度程序无限期的<strong>忽视</strong>。</p>
+<h2 id="17-死锁的条件"><a href="#17-死锁的条件" class="headerlink" title="17 死锁的条件"></a>17 死锁的条件</h2><p>（1）<strong>互斥</strong>：一次只允许一个进程使用一个资源。其他进程不能访问已分配给其他进程的资源。<br>（2）<strong>占有且等待</strong>：当一个进程等待其他进程时，继续占有已分配的资源<br>（3）<strong>不可抢占</strong>：不能强行抢占进程已占有的资源<br>（4）<strong>循环等待</strong>：在一个闭合的进程链，每个进程至少占有此链中下一个进程所需的一个资源。</p>
+<h2 id="18-死锁的预防"><a href="#18-死锁的预防" class="headerlink" title="18 死锁的预防"></a>18 死锁的预防</h2><ul>
+<li><strong>间接</strong>预防：防止死锁必要条件前三个中任何一个的发生。</li>
+<li><strong>直接</strong>预防：防止循环等待环。</li>
+<li>破坏“<strong>互斥</strong>”条件：由于互斥条件是非共享设备所必须的，不仅不能改变，还应加以保证。</li>
+<li>破坏“<strong>占有且等待</strong>”条件：所有进程在开始运行之前，必须一次性地申请其在整个运行过程中所需的全部资源。 只要有一种资源不能分配，则全部不分配。（缺点：资源浪费）</li>
+<li>破坏“<strong>不可抢占</strong>”条件：进程逐个地申请所需资源。当一个已经保持了某些资源的进程申请新资源而不能得到满足时，必须放弃所有已保持的资源。</li>
+<li>破坏“<strong>循环等待</strong>”条件：系统将所有资源按类型分配序号并排队；所有进程申请资源必须按序号递增的顺序申请。</li>
+</ul>
+<h2 id="19-ThreadLocal是什么？有哪些使用场景"><a href="#19-ThreadLocal是什么？有哪些使用场景" class="headerlink" title="19  ThreadLocal是什么？有哪些使用场景"></a>19  ThreadLocal是什么？有哪些使用场景</h2><p>ThreadLocal为每个使用该变量的线程提供独立的<strong>变量副本</strong>，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本。</p>
+<p>ThreadLocal 的经典<strong>使用场景</strong>是<strong>数据库连接</strong>和 <strong>session 管理</strong>等。</p>
+<h2 id="20-临界资源和临界区"><a href="#20-临界资源和临界区" class="headerlink" title="20 临界资源和临界区"></a>20 临界资源和临界区</h2><ul>
+<li><strong>临界区</strong>：每个进程中访问临界资源的那段代码</li>
+<li><strong>临界资源</strong>：我们把一次只允许一个进程访问的资源</li>
+</ul>
+<h2 id="21-synchronized-底层实现原理"><a href="#21-synchronized-底层实现原理" class="headerlink" title="21  synchronized 底层实现原理"></a>21  synchronized 底层实现原理</h2><p>synchronized可以保证方法或者代码块在运行时，<strong>同一时刻</strong>只有<strong>一个方法</strong>可以进入到<strong>临界区</strong>，同时它还可以保证<strong>共享变量</strong>的内<strong>存可见性</strong>。</p>
+<p>Java中每一个对象都可以作为锁，这是synchronized实现同步的基础：</p>
+<ul>
+<li><strong>普通</strong>同步方法，锁是<strong>当前实例</strong>对象</li>
+<li><strong>静态</strong>同步方法，锁是<strong>当前类</strong>的class对象</li>
+<li>同步方法<strong>块</strong>，锁是<strong>括号里面</strong>的对象</li>
+</ul>
+<h2 id="22-synchronized-和-volatile-的区别"><a href="#22-synchronized-和-volatile-的区别" class="headerlink" title="22  synchronized 和 volatile 的区别"></a>22  synchronized 和 volatile 的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">synchronized</th>
+<th align="center">volatile</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">本质</td>
+<td align="center">锁定当前变量，只有当前线程可以访问该变量，其他线程被阻塞住</td>
+<td align="center">告诉jvm当前变量在寄存器（工作内存）中的值是不确定的，需要从主存中读取</td>
+</tr>
+<tr>
+<td align="center">类型</td>
+<td align="center">修饰类、方法、代码段</td>
+<td align="center">变量修饰符</td>
+</tr>
+<tr>
+<td align="center">阻塞</td>
+<td align="center">可能会</td>
+<td align="center">不会</td>
+</tr>
+<tr>
+<td align="center">实现变量</td>
+<td align="center">保证变量的修改可见性和原子性</td>
+<td align="center">修改可见性，不能保证原子性</td>
+</tr>
+<tr>
+<td align="center">使用</td>
+<td align="center">变量、方法、和类级别</td>
+<td align="center">在变量级别</td>
+</tr>
+<tr>
+<td align="center">标记的变量</td>
+<td align="center">可以被编译器优化</td>
+<td align="center">不会被编译器优化</td>
+</tr>
+</tbody></table>
+<h2 id="23-synchronized-和-Lock-的区别"><a href="#23-synchronized-和-Lock-的区别" class="headerlink" title="23  synchronized 和 Lock 的区别"></a>23  synchronized 和 Lock 的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">synchronized</th>
+<th align="center">Lock</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">存在层次</td>
+<td align="center">Java关键字，在JVM层面上</td>
+<td align="center">一个Java类</td>
+</tr>
+<tr>
+<td align="center">锁的释放</td>
+<td align="center">自动：1.线程执行完同步代码会释放锁<br />2.线程执行过程中发生异常会释放锁</td>
+<td align="center">手动：在finally中实现释放锁，否则容易造成线程死锁</td>
+</tr>
+<tr>
+<td align="center">是否获取锁</td>
+<td align="center">无法判断</td>
+<td align="center">可以判断</td>
+</tr>
+<tr>
+<td align="center">锁类型</td>
+<td align="center">重入、不可中断、非公平</td>
+<td align="center">可重入、可判断、可公平（两者皆可）</td>
+</tr>
+<tr>
+<td align="center">锁的获取</td>
+<td align="center">线程1获得锁，线程2线程等待<br />如果线程1阻塞，线程2则会一直等待下去</td>
+<td align="center">而Lock锁就不一定会等待下去，<br />如果尝试获取不到锁，线程可以不用一直等待就结束了</td>
+</tr>
+<tr>
+<td align="center">同步问题</td>
+<td align="center">少量</td>
+<td align="center">大量</td>
+</tr>
+</tbody></table>
+<h2 id="24-synchronized-和-ReentrantLock-的区别"><a href="#24-synchronized-和-ReentrantLock-的区别" class="headerlink" title="24 synchronized 和 ReentrantLock 的区别"></a>24 synchronized 和 ReentrantLock 的区别</h2><p>synchronized是和if、else、for、while一样的关键字，ReentrantLock是类，这是二者的本质区别。既然ReentrantLock是类，那么它就提供了比synchronized更多更灵活的特性，可以被继承、可以有方法、可以有各种各样的类变量，ReentrantLock比synchronized的扩展性体现在几点上： </p>
+<ul>
+<li>ReentrantLock可以对获取锁的等待时间进行设置，这样就避免了死锁 </li>
+<li>ReentrantLock可以获取各种锁的信息</li>
+<li>ReentrantLock可以灵活地实现多路通知 </li>
+</ul>
+<h2 id="25-atomic-的原理"><a href="#25-atomic-的原理" class="headerlink" title="25 atomic 的原理"></a>25 atomic 的原理</h2><p> atomic 主要利用 CAS (Compare And Wwap) 和 volatile 和 native 方法来保证原子操作，从而避免 synchronized 的高开销，执行效率大为提升。  直接操作内存，使用Unsafe 这个类 。 使用 getIntVolatile(var1, var2) 获取线程间共享的变量 。</p>
+<h2 id="26-锁"><a href="#26-锁" class="headerlink" title="26 锁"></a>26 锁</h2><h3 id="1-悲观锁"><a href="#1-悲观锁" class="headerlink" title="1 悲观锁"></a>1 悲观锁</h3><p>每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻止，直到这个锁被释放</p>
+<h3 id="2-乐观锁"><a href="#2-乐观锁" class="headerlink" title="2 乐观锁"></a>2 乐观锁</h3><p>每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在<strong>提交</strong>更新的时候会<strong>判断</strong>一下在此期间别人有没有去更新这个数据。<strong>CAS</strong> 操作实现。</p>
+<h3 id="3-重量级锁"><a href="#3-重量级锁" class="headerlink" title="3 重量级锁"></a>3 重量级锁</h3><p><strong>Synchronized</strong> 是通过对象内部的一个叫做<strong>监视器锁</strong>（<strong>monitor</strong>）来实现的。但是监视器锁本质又是依赖于底层的操作系统的 <strong>Mutex Lock</strong> 来 实现的。 </p>
+<p>而操作系统实现线程之间的切换这就需要从用户态转换到核心态，这个成本非常高，状态之间的转换需要相对比较长的时间，这就是为什么 Synchronized 效率低的原因。 </p>
+<p>因此， 这种<strong>依赖</strong>于操作系统 <strong>Mutex Lock</strong> 所实现的<strong>锁</strong>我们称之为“<strong>重量级锁</strong>” 。 JDK 中对 Synchronized 做的种种优化，其核心都是为了减少这种重量级锁的使用。 </p>
+<p>JDK<strong>1.6</strong> 以后，为了减少获得锁和释放锁所带来的性能消耗，提高性能，引入了“<strong>轻量级锁</strong>”和“<strong>偏向锁</strong>”。</p>
+<h3 id="4-轻量级锁"><a href="#4-轻量级锁" class="headerlink" title="4 轻量级锁"></a>4 轻量级锁</h3><p> 轻量级锁（Lightweight Locking）本意是为了<strong>减少</strong>多线程进入<strong>互斥</strong>(mutex)的几率，并不是要替代互斥。 </p>
+<p> <strong>轻量级锁的目标是，减少无实际竞争情况下，使用重量级锁产生的性能消耗</strong>，包括系统调用引起的内核态与用户态切换、线程阻塞造成的线程切换等。 </p>
+<p>顾名思义，轻量级锁是相对于重量级锁而言的。使用轻量级锁时，不需要申请互斥量，仅仅<em>将Mark Word中的部分字节CAS更新指向线程栈中的Lock Record，如果更新成功，则轻量级锁获取成功</em>，记录锁状态为轻量级锁；<em>否则，说明已经有线程获得了轻量级锁，目前发生了锁竞争（不适合继续使用轻量级锁），接下来膨胀为重量级锁</em>。</p>
+<h3 id="5-偏向锁"><a href="#5-偏向锁" class="headerlink" title="5 偏向锁"></a>5 偏向锁</h3><p> 锁会偏向于当前已经占有锁的线程 </p>
+<p> <strong>偏向锁的目标是，减少无竞争且只有一个线程使用锁的情况下，使用轻量级锁产生的性能消耗</strong>。轻量级锁每次申请、释放锁都至少需要一次CAS，但偏向锁只有初始化时需要一次CAS。 </p>
+<p>“偏向”的意思是，<em>偏向锁假定将来只有第一个申请锁的线程会使用锁</em>（不会有任何线程再来申请锁），因此，<em>只需要在Mark Word中CAS记录owner（本质上也是更新，但初始值为空），如果记录成功，则偏向锁获取成功</em>，记录锁状态为偏向锁，<em>以后当前线程等于owner就可以零成本的直接获得锁；否则，说明有其他线程竞争，膨胀为轻量级锁</em>。</p>
+<p> 偏向锁的实现就是将对象头 markword 的标记设置为偏向，并将线程ID写入对象头 markword，当其他线程请求相同的锁时，偏向模式结束。 </p>
+<h3 id="6-可重入锁（递归锁）"><a href="#6-可重入锁（递归锁）" class="headerlink" title="6 可重入锁（递归锁）"></a>6 可重入锁（递归锁）</h3><p>本文里面讲的是广义上的可重入锁，而不是单指 JAVA 下的 ReentrantLock。 可重入锁，也叫 做递归锁，指的是<strong>同一线程 外层函数获得锁</strong>之后 ，<strong>内层递归函数仍然有获取该锁的代码</strong>，但不受 影响。在 JAVA 环境下 ReentrantLock 和 synchronized 都是 可重入锁。</p>
+<h3 id="7-公平锁"><a href="#7-公平锁" class="headerlink" title="7 公平锁"></a>7 <strong>公平锁</strong></h3><p>加锁前检查是否有排队等待的线程，优先排队等待的线程，<strong>先来先得</strong></p>
+<h3 id="8-非公平锁"><a href="#8-非公平锁" class="headerlink" title="8 非公平锁"></a>8 <strong>非公平锁</strong></h3><p>加锁时<strong>不考虑排队等待问题</strong>，直接尝试获取锁，获取不到自动到队尾等待 </p>
+<ol>
+<li><p>非公平锁性能比公平锁高 5~10 倍，因为公平锁需要在多核的情况下维护一个队列 </p>
+</li>
+<li><p>Java 中的 synchronized 是非公平锁， ReentrantLock 默认的 lock()方法采用的是非公平锁。 </p>
+</li>
+</ol>
+<h3 id="9-锁模式分"><a href="#9-锁模式分" class="headerlink" title="9 锁模式分"></a>9 锁模式分</h3><p>java 并发包提供的加锁模式分为独占锁和共享锁。 </p>
+<h4 id="1独占锁"><a href="#1独占锁" class="headerlink" title="1独占锁"></a>1独占锁</h4><p>独占锁模式下，<strong>每次只能有一个线程能持有锁</strong>， ReentrantLock 就是以独占方式实现的互斥锁。 </p>
+<p>独占锁是一种悲观保守的加锁策略，它避免了读/读冲突，如果某个只读线程获取锁，则其他读线 </p>
+<p>程都只能等待，这种情况下就限制了不必要的并发性，因为读操作并不会影响数据的一致性。 </p>
+<h4 id="2共享锁"><a href="#2共享锁" class="headerlink" title="2共享锁"></a>2共享锁</h4><p>共享锁则<strong>允许多个线程同时获取锁</strong>，并发访问 共享资源，如： ReadWriteLock。 共享锁则是一种 </p>
+<p>乐观锁，它放宽了加锁策略，允许多个执行读操作的线程同时访问共享资源。 </p>
+<ol>
+<li>AQS 的内部类 Node 定义了两个常量 SHARED 和 EXCLUSIVE，他们分别标识 AQS 队列中等 </li>
+</ol>
+<p>待线程的锁获取模式。 </p>
+<ol start="2">
+<li>java 的并发包中提供了 ReadWriteLock，读-写锁。它允许一个资源可以被多个读操作访问， </li>
+</ol>
+<p>或者被一个 写操作访问，但两者不能同时进行。 </p>
+<h3 id="10-锁优化"><a href="#10-锁优化" class="headerlink" title="10 锁优化"></a>10 <strong>锁优化</strong></h3><h4 id="1-减少锁持有时间"><a href="#1-减少锁持有时间" class="headerlink" title="1 减少锁持有时间"></a>1 <strong>减少锁持有时间</strong></h4><p>只用在有线程安全要求的程序上加锁 </p>
+<h4 id="2减小锁粒度"><a href="#2减小锁粒度" class="headerlink" title="2减小锁粒度"></a>2<strong>减小锁粒度</strong></h4><p>将大对象（这个对象可能会被很多线程访问），拆成小对象，大大增加并行度，降低锁竞争。 </p>
+<p>降低了锁的竞争，偏向锁，轻量级锁成功率才会提高。最最典型的减小锁粒度的案例就是 </p>
+<p>ConcurrentHashMap。 </p>
+<h4 id="3-锁分离"><a href="#3-锁分离" class="headerlink" title="3 锁分离"></a>3 <strong>锁分离</strong></h4><p>最常见的锁分离就是读写锁 ReadWriteLock，根据功能进行分离成读锁和写锁，这样读读不互 </p>
+<p>斥，读写互斥，写写互斥，即保证了线程安全，又提高了性能，具体也请查看[高并发 Java 五] </p>
+<p>JDK 并发包 1。读写分离思想可以延伸，只要操作互不影响，锁就可以分离。比如 </p>
+<p>LinkedBlockingQueue 从头部取出，从尾部放数据 </p>
+<h4 id="4-锁粗化"><a href="#4-锁粗化" class="headerlink" title="4 锁粗化"></a>4 <strong>锁粗化</strong></h4><p>通常情况下，为了保证多线程间的有效并发，会要求每个线程持有锁的时间尽量短，即在使用完 </p>
+<p>公共资源后，应该立即释放锁。但是，凡事都有一个度， 如果对同一个锁不停的进行请求、同步 </p>
+<p>和释放，其本身也会消耗系统宝贵的资源，反而不利于性能的优化 。 </p>
+<h4 id="5-锁消除"><a href="#5-锁消除" class="headerlink" title="5  锁消除"></a>5  <strong>锁消除</strong></h4><p>锁消除是在编译器级别的事情。 在即时编译器时，如果发现不可能被共享的对象，则可以消除这 </p>
+<p>些对象的锁操作，多数是因为程序员编码不规范引起。</p>
+<h3 id="11-markword"><a href="#11-markword" class="headerlink" title="11 markword"></a>11 markword</h3><p>HotSpot 虚拟机的对象头包括两部分信息</p>
+<ol>
+<li><strong>markword</strong>：用于<strong>存储</strong>对象自身的<strong>运行时数据</strong>，如哈希码（HashCode）、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳等，这部分数据的长度在32位和64位的虚拟机（未开启压缩指针）中分别为32bit和64bit，官方称它为“MarkWord”。</li>
+<li><strong>klass</strong>：对象<strong>指向</strong>它的类元数据的<strong>指针</strong>，虚拟机通过这个指针来确定这个<strong>对象是哪个类的实例</strong>。</li>
+</ol>
+<p>markword 数据的长度在32位和64位的虚拟机（未开启压缩指针）中分别为32bit和64bit，它的最后2bit是锁状态标志位，用来标记当前对象的状态，对象所处的状态，决定了 markword 存储的内容，32位虚拟机在不同状态下 markword 结构如下图所示:</p>
+<p><img src="E:\大学\大三\面试\image\markword.jpg"></p>
+<h3 id="12-自旋锁"><a href="#12-自旋锁" class="headerlink" title="12 自旋锁"></a>12 自旋锁</h3><p> 那些等待竞争锁的线程就不需要做内核态和用户态之间的切换进入阻塞挂起状态，它们只需要等一等（自旋），等持有锁的线程释放锁后即可立即获取锁，这样就<strong>避免用户线程和内核的切换的消耗。</strong> </p>
+<p>但是线程自旋是需要消耗 cup 的，说白了就是让 cup 在做无用功，如果一直获取不到锁，那线程也不能一直占用 cup 自旋做无用功，所以需要设定一个自旋等待的最大时间。</p>
+<p>如果持有锁的线程执行的时间超过自旋等待的最大时间扔没有释放锁，就会导致其它争用锁的线程在最大等待时间内还是获取不到锁，这时争用线程会停止自旋进入阻塞状态。</p>
+<p>JVM 对于自旋周期的选择，jdk1.6前这个限度是一定的写死的，在1.6后引入了适应性自旋锁，适应性自旋锁意味着自旋的时间不再是固定的了，而是由前一次在同一个锁上的自旋时间以及锁的拥有者的状态来决定。线程如果自旋成功了，则下次自旋的次数会更多，如果自旋失败了，则自旋的次数就会减少。</p>
+<h2 id="27-线程基本方法"><a href="#27-线程基本方法" class="headerlink" title="27 线程基本方法"></a>27 <strong>线程基本方法</strong></h2><p>线程相关的基本方法有 wait， notify， notifyAll， sleep， join， yield 等。 </p>
+<h2 id="28-线程等待（wait）"><a href="#28-线程等待（wait）" class="headerlink" title="28 线程等待（wait）"></a>28 线程等待（wait）</h2><p>调用该方法的线程进入 WAITING 状态，只有等待另外线程的通知或被中断才会返回，需要注意的 </p>
+<p>是调用 wait()方法后， <strong>会释放对象的锁</strong>。因此， wait 方法一般用在同步方法或同步代码块中。  </p>
+<h2 id="29-线程睡眠（sleep）"><a href="#29-线程睡眠（sleep）" class="headerlink" title="29 线程睡眠（sleep）"></a>29 线程睡眠（sleep）</h2><p>sleep 导致当前线程休眠，与 wait 方法不同的是 sleep <strong>不会释放当前占有的锁</strong>,sleep(long)会导致 </p>
+<p>线程进入 TIMED-WATING 状态，而 wait()方法会导致当前线程进入 WATING 状态 </p>
+<h2 id="30-线程让步（yield）"><a href="#30-线程让步（yield）" class="headerlink" title="30 线程让步（yield）"></a>30 线程让步（yield）</h2><p>yield 会使当前线程让出 CPU 执行时间片，与其他线程一起重新竞争 CPU 时间片。一般情况下， </p>
+<p>优先级高的线程有更大的可能性成功竞争得到 CPU 时间片， 但这又不是绝对的，有的操作系统对 </p>
+<p>线程优先级并不敏感。  </p>
+<h2 id="31-线程中断（interrupt）"><a href="#31-线程中断（interrupt）" class="headerlink" title="31 线程中断（interrupt）"></a>31 线程中断（interrupt）</h2><p>中断一个线程，其本意是给这个线程一个通知信号，会影响这个线程内部的一个<strong>中断标识位</strong>。 这 </p>
+<p>个<strong>线程本身</strong>并<strong>不会因此而改变状态</strong>(如阻塞，终止等)。 </p>
+<ol>
+<li>调用 <strong>interrupt</strong>()方法并不会中<strong>断一个正在运行的线程</strong>。也就是说处于 Running 状态的 </li>
+</ol>
+<p>程并不会因为被中断而被终止，仅仅<strong>改变</strong>了内部维护的<strong>中断标识位</strong>而已。 </p>
+<ol start="2">
+<li>若调用 sleep()而使线程处于 TIMED-WATING 状态，这时调用 interrupt()方法，会抛 </li>
+</ol>
+<p>InterruptedException,从而使线程提前结束 TIMED-WATING 状态。 </p>
+<ol start="3">
+<li>许多声明抛出 InterruptedException 的方法(如 Thread.sleep(long mills 方法))，抛出异 </li>
+</ol>
+<p>常前，都会清除中断标识位，所以抛出异常后，调用 isInterrupted()方法将会返回 false。 </p>
+<ol start="4">
+<li>中断状态是线程固有的一个标识位，可以通过此标识位安全的终止线程。比如,你想终止 </li>
+</ol>
+<p>一个线程 thread 的时候，可以调用 thread.interrupt()方法，在线程的 run 方法内部可以 </p>
+<p>根据 thread.isInterrupted()的值来优雅的终止线程。</p>
+<h2 id="32-Join-等待其他线程终止"><a href="#32-Join-等待其他线程终止" class="headerlink" title="32 Join 等待其他线程终止"></a>32 Join 等待其他线程终止</h2><p>join() 方法，等待其他线程终止，在当前线程中调用一个线程的 join() 方法，则当前线程转为阻塞<br>状态，回到另一个线程结束，当前线程再由阻塞状态变为就绪状态，等待 cpu 的宠幸。 </p>
+<h2 id="33-上下文"><a href="#33-上下文" class="headerlink" title="33 上下文"></a>33 上下文</h2><p>是指某一时间点 CPU 寄存器和程序计数器的内容</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/22/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" data-id="ckk7z7cwm000djchfggrn4zt5" data-title="多线程" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/22/Java%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2021-01-22T07:33:34.000Z" itemprop="datePublished">2021-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/22/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-基础"><a href="#Java-基础" class="headerlink" title="Java 基础"></a>Java 基础</h1><h2 id="1-JDK和JRE"><a href="#1-JDK和JRE" class="headerlink" title="1.JDK和JRE"></a>1.JDK和JRE</h2><ul>
+<li>JDK：Java Development Kit 的简称，java <strong>开发工具包</strong>，<strong>提供</strong>了 java 的<strong>开发环境</strong>和<strong>运行环境</strong>。</li>
+<li>JRE：Java Runtime Environment 的简称，java <strong>运行环境</strong>，<strong>为 java 的运行提供</strong>了<strong>所需环境</strong>。</li>
+</ul>
+<h2 id="2-和-equals-的区别"><a href="#2-和-equals-的区别" class="headerlink" title="2.== 和 equals 的区别"></a>2.== 和 equals 的区别</h2><p> <strong>==</strong> 对于基本类型来说是<strong>值</strong>比较，对于引用类型来说是比较的 <strong>引用的地址</strong>是否相同 ；</p>
+<p> <strong>equals</strong> 默认情况下是<strong>引用比较</strong>，只是很多类重写了 equals 方法，比如 String、Integer 等把它变成了值比较，所以<strong>一般情况下</strong> equals 比较的是<strong>值</strong>是否相等。 </p>
+<ol>
+<li><strong>Object</strong>类的equals（）和==运算符几乎一样，也是要求两个引用类型变量指向同一个对象时才会返回true;</li>
+<li><strong>string</strong>类的equals（）已经进行了重写，所以str1.euqals(str2)比较的是str1和str2的<strong>内容</strong>，而不是比较引用类型变量指向的对象<br>此外：</li>
+</ol>
+<h2 id="3-hashCode-、-equals"><a href="#3-hashCode-、-equals" class="headerlink" title="3.hashCode() 、 equals()"></a>3.hashCode() 、 equals()</h2><p>两个对象的 hashCode() 相同，则 equals() 也一定为 true，对吗？</p>
+<p>不对，两个对象的 hashCode() 相同，equals() 不一定 true。</p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;通话&quot;</span>;</span><br><span class="line">String str2 = <span class="string">&quot;重地&quot;</span>;</span><br><span class="line">System.out.println(String.format(<span class="string">&quot;str1：%d | str2：%d&quot;</span>,  str1.hashCode(),str2.hashCode()));</span><br><span class="line">System.out.println(str1.equals(str2));</span><br></pre></td></tr></table></figure>
+
+<p>执行的结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str1：<span class="number">1179395</span> | str2：<span class="number">1179395</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<p>哈希值相等，并不一定能得出键值对相等。</p>
+<h2 id="4-final-在-Java-中的作用"><a href="#4-final-在-Java-中的作用" class="headerlink" title="4. final 在 Java 中的作用"></a>4. final 在 Java 中的作用</h2><ul>
+<li>final 修饰的<strong>类</strong>叫<strong>最终类</strong>，该类<strong>不能被继承</strong>。</li>
+<li>final 修饰的<strong>方法 **  **不能被重写</strong>。</li>
+<li>final 修饰的<strong>变量</strong>叫<strong>常量</strong>，常量<strong>必须初始化</strong>，初始化之后值就<strong>不能被修改</strong>。</li>
+</ul>
+<h2 id="5-Math-round-、Math-ceil-、Math-floor"><a href="#5-Math-round-、Math-ceil-、Math-floor" class="headerlink" title="5.Math.round()、Math.ceil()、Math.floor()"></a>5.Math.round()、Math.ceil()、Math.floor()</h2><h4 id="1-Math-round-：将括号内的数-0-5之后，向下取整数，四舍五入"><a href="#1-Math-round-：将括号内的数-0-5之后，向下取整数，四舍五入" class="headerlink" title="(1)Math.round()：将括号内的数+0.5之后，向下取整数，四舍五入"></a>(1)Math.round()：将括号内的数+0.5之后，向下取整数，四舍五入</h4><p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;Math.round(1.4):&quot;</span>+Math.round(<span class="number">1.4</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.round(1.5):&quot;</span>+Math.round(<span class="number">1.5</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.round(-1.4):&quot;</span>+Math.round(-<span class="number">1.4</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.round(-1.5):&quot;</span>+Math.round(-<span class="number">1.5</span>));</span><br></pre></td></tr></table></figure>
+<p>执行的结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Math.round(<span class="number">1.4</span>):<span class="number">1</span></span><br><span class="line">Math.round(<span class="number">1.5</span>):<span class="number">2</span></span><br><span class="line">Math.round(-<span class="number">1.4</span>):-<span class="number">1</span></span><br><span class="line">Math.round(-<span class="number">1.5</span>):-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-Math-ceil-求最小的整数-但不小于本身-ceil的英文意义是天花板，该方法就表示向上取整"><a href="#2-Math-ceil-求最小的整数-但不小于本身-ceil的英文意义是天花板，该方法就表示向上取整" class="headerlink" title="(2)Math.ceil():求最小的整数,但不小于本身,ceil的英文意义是天花板，该方法就表示向上取整"></a>(2)Math.ceil():求最小的整数,但不小于本身,ceil的英文意义是天花板，该方法就表示向上取整</h4><p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;Math.ceil(1.4):&quot;</span>+Math.ceil(<span class="number">1.4</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.ceil(1.5):&quot;</span>+Math.ceil(<span class="number">1.5</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.ceil(-1.4):&quot;</span>+Math.ceil(-<span class="number">1.4</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.ceil(-1.5):&quot;</span>+Math.ceil(-<span class="number">1.5</span>));</span><br></pre></td></tr></table></figure>
+<p>执行的结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Math.ceil(<span class="number">1.4</span>):<span class="number">2.0</span></span><br><span class="line">Math.ceil(<span class="number">1.5</span>):<span class="number">2.0</span></span><br><span class="line">Math.ceil(-<span class="number">1.4</span>):-<span class="number">1.0</span></span><br><span class="line">Math.ceil(-<span class="number">1.5</span>):-<span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-Math-floor-求最大的整数-但不大于本身-求最大的整数-但不大于本身"><a href="#3-Math-floor-求最大的整数-但不大于本身-求最大的整数-但不大于本身" class="headerlink" title="(3)Math.floor():求最大的整数,但不大于本身,求最大的整数,但不大于本身"></a>(3)Math.floor():求最大的整数,但不大于本身,求最大的整数,但不大于本身</h4><p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;Math.floor(1.4):&quot;</span>+Math.floor(<span class="number">1.4</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.floor(1.5):&quot;</span>+Math.floor(<span class="number">1.5</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.floor(-1.4):&quot;</span>+Math.floor(-<span class="number">1.4</span>));</span><br><span class="line">System.out.println(<span class="string">&quot;Math.floor(-1.5):&quot;</span>+Math.floor(-<span class="number">1.5</span>));</span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Math.floor(<span class="number">1.4</span>):<span class="number">1.0</span></span><br><span class="line">Math.floor(<span class="number">1.5</span>):<span class="number">1.0</span></span><br><span class="line">Math.floor(-<span class="number">1.4</span>):-<span class="number">2.0</span></span><br><span class="line">Math.floor(-<span class="number">1.5</span>):-<span class="number">2.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-String-属于基础的数据类型吗"><a href="#6-String-属于基础的数据类型吗" class="headerlink" title="6.String 属于基础的数据类型吗"></a>6.String 属于基础的数据类型吗</h2><p>不是，String属于<strong>对象</strong></p>
+<p>JAVA中的八种基本数据类型</p>
+<table>
+<thead>
+<tr>
+<th>号</th>
+<th>数据类型</th>
+<th>位数</th>
+<th>默认值</th>
+<th>取值范围</th>
+<th>举例说明</th>
+<th align="center">封装器类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>byte(位)</td>
+<td>8</td>
+<td>0</td>
+<td>-2^7 - 2^7-1</td>
+<td>byte b = 10;</td>
+<td align="center">Byte</td>
+</tr>
+<tr>
+<td>2</td>
+<td>short(短整数)</td>
+<td>16</td>
+<td>0</td>
+<td>-2^15 - 2^15-1</td>
+<td>short s = 10;</td>
+<td align="center">Short</td>
+</tr>
+<tr>
+<td>3</td>
+<td>int(整数)</td>
+<td>32</td>
+<td>0</td>
+<td>-2^31 - 2^31-1</td>
+<td>int i = 10;</td>
+<td align="center">Integer</td>
+</tr>
+<tr>
+<td>4</td>
+<td>long(长整数)</td>
+<td>64</td>
+<td>0</td>
+<td>-2^63 - 2^63-1</td>
+<td>long l = 10l;</td>
+<td align="center">Long</td>
+</tr>
+<tr>
+<td>5</td>
+<td>float(单精度)</td>
+<td>32</td>
+<td>0.0</td>
+<td>-2^31 - 2^31-1</td>
+<td>float f = 10.0f;</td>
+<td align="center">Long</td>
+</tr>
+<tr>
+<td>6</td>
+<td>double(双精度)</td>
+<td>64</td>
+<td>0.0</td>
+<td>-2^63 - 2^63-1</td>
+<td>double d = 10.0d;</td>
+<td align="center">Double</td>
+</tr>
+<tr>
+<td>7</td>
+<td>char(字符)</td>
+<td>16</td>
+<td>空</td>
+<td>0 - 2^16-1</td>
+<td>char c = ‘c’;</td>
+<td align="center">Character</td>
+</tr>
+<tr>
+<td>8</td>
+<td>boolean(布尔值)</td>
+<td>1</td>
+<td>false</td>
+<td>true、false</td>
+<td>boolean b = true</td>
+<td align="center">Boolean</td>
+</tr>
+</tbody></table>
+<h2 id="7、java-中操作字符串都有哪些类？它们之间有什么区别？"><a href="#7、java-中操作字符串都有哪些类？它们之间有什么区别？" class="headerlink" title="7、java 中操作字符串都有哪些类？它们之间有什么区别？"></a>7、java 中操作字符串都有哪些类？它们之间有什么区别？</h2><ul>
+<li><p><strong>String：final</strong>修饰,声明的是不可变的对象。每次操作都会生成新的 String 对象，然后将指针指向新的 String 对象，</p>
+</li>
+<li><p><strong>StringBuffer</strong> ：大部分都使用<strong>synchronized</strong>关键字修饰,所以StringBuffer是<strong>线程安全</strong>的</p>
+</li>
+<li><p><strong>StringBuilder</strong>：<strong>非线程安全</strong>，<strong>性能</strong>却高于 StringBuffer</p>
+</li>
+</ul>
+<p>StringBuffer、StringBuilder 可以在<strong>原有对象</strong>的基础上进行操作，所以在<strong>经常改变字符串内容</strong>的情况下最好不要使用 String。</p>
+<p><strong>单线程</strong>环境下推荐使用 <strong>StringBuilder</strong>，<strong>多线程</strong>环境下推荐使用 <strong>StringBuffer</strong>。</p>
+<p>执行<strong>速度</strong>:StringBuilder &gt; StringBuffer &gt; String。</p>
+<h2 id="8、Strin1g-str-”i”与-String-str-new-String-“i”"><a href="#8、Strin1g-str-”i”与-String-str-new-String-“i”" class="headerlink" title="8、Strin1g str=”i”与 String str=new String(“i”)"></a>8、Strin1g str=”i”与 String str=new String(“i”)</h2><p> String str=”i”的方式，java 虚拟机会将其分配到<strong>常量池</strong>中；</p>
+<p> String str=new String(“i”) 则会被分到<strong>堆内存</strong>中。 </p>
+<h2 id="9、如何将字符串反转"><a href="#9、如何将字符串反转" class="headerlink" title="9、如何将字符串反转"></a>9、如何将字符串反转</h2><p> 使用 <strong>StringBuilder</strong> 或者 <strong>stringBuffer</strong> 的 <strong>reverse()</strong> 方法。 </p>
+<p>代码示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer stringBuffer = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">stringBuffer.append(<span class="string">&quot;abcdefg&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;stringBuffer.reverse():&quot;</span>+stringBuffer.reverse());</span><br><span class="line"></span><br><span class="line">StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">stringBuilder.append(<span class="string">&quot;abcdefg&quot;</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;stringBuilder.reverse():&quot;</span>+stringBuilder.reverse());</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>执行结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stringBuffer.reverse():gfedcba</span><br><span class="line">stringBuilder.reverse():gfedcba</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="10、String-类的常用方法"><a href="#10、String-类的常用方法" class="headerlink" title="10、String 类的常用方法"></a>10、String 类的常用方法</h2><ul>
+<li><strong>indexOf</strong>()：返回指定字符的<strong>索引</strong>。</li>
+<li><strong>charAt</strong>()：返回指定<strong>索引处的字符</strong>。</li>
+<li><strong>replace</strong>()：字符串<strong>替换</strong>。</li>
+<li><strong>trim</strong>()：<strong>去</strong>除字符串<strong>两端空白</strong>。</li>
+<li><strong>split</strong>()：<strong>分割</strong>字符串，返回一个分割后的字符串数组。</li>
+<li><strong>getBytes</strong>()：<strong>返回</strong>字符串的 <strong>byte 类型数组</strong>。</li>
+<li><strong>length</strong>()：返回字符串<strong>长度</strong>。</li>
+<li><strong>toLowerCase</strong>()：将字符串转成<strong>小写</strong>字母。</li>
+<li><strong>toUpperCase</strong>()：将字符串转成<strong>大写</strong>字符。</li>
+<li><strong>substring</strong>()：<strong>截取</strong>字符串。（顾前不顾后）</li>
+<li><strong>equals</strong>()：字符串<strong>比较</strong>。</li>
+</ul>
+<h2 id="11、抽象类必须要有抽象方法吗？"><a href="#11、抽象类必须要有抽象方法吗？" class="headerlink" title="11、抽象类必须要有抽象方法吗？"></a>11、抽象类必须要有抽象方法吗？</h2><p> 不需要，抽象类不一定非要有抽象方法。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> </span>&#123;   </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">hey</span><span class="params">()</span></span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;hey!&quot;</span>);   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> 上面代码，抽象类并没有抽象方法但完全可以正常运行 .</p>
+<h2 id="12、普通类和抽象类的区别"><a href="#12、普通类和抽象类的区别" class="headerlink" title="12、普通类和抽象类的区别"></a>12、普通类和抽象类的区别</h2><ul>
+<li><strong>普通类</strong>不能包含<strong>抽象方法</strong>，抽象类可以包含抽象方法。</li>
+<li><strong>抽象类</strong>不能<strong>直接实例化</strong>，普通类可以直接实例化。</li>
+</ul>
+<h2 id="13、抽象类能使用-final-修饰吗"><a href="#13、抽象类能使用-final-修饰吗" class="headerlink" title="13、抽象类能使用 final 修饰吗"></a>13、抽象类能使用 final 修饰吗</h2><p> 不能，定义<strong>抽象类</strong>就是<strong>让其他类继承</strong>的，如果定义为 <strong>final 该类就不能被继承</strong>，这样彼此就会产生矛盾 </p>
+<p><img src="E:\大学\大三\面试\image\a&f.jpg"></p>
+<h2 id="14、-接口和抽象类的区别"><a href="#14、-接口和抽象类的区别" class="headerlink" title="14、 接口和抽象类的区别"></a>14、 接口和抽象类的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">抽象类</th>
+<th align="center">接口类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>实现</strong></td>
+<td align="center">使用 <strong>extends</strong> 来<strong>继承</strong></td>
+<td align="center">使用 <strong>implements</strong> 来<strong>实现</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>构造函数</strong></td>
+<td align="center"><strong>可以有</strong></td>
+<td align="center"><strong>不能有</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>main 方法</strong></td>
+<td align="center"><strong>可以有</strong></td>
+<td align="center"><strong>不能有</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>实现数量</strong></td>
+<td align="center">一个子类只能继承一个父类</td>
+<td align="center">一个子类实现多个接口</td>
+</tr>
+<tr>
+<td align="center"><strong>访问修饰符</strong></td>
+<td align="center">方法可以是<strong>任意访问修饰符</strong></td>
+<td align="center">方法默认使用 <strong>public</strong> 修饰</td>
+</tr>
+<tr>
+<td align="center">相同点</td>
+<td align="center">不能被实例化</td>
+<td align="center">不能被实例化</td>
+</tr>
+<tr>
+<td align="center"><strong>意义</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>为其他子类提供一个公共的类型</p>
+</li>
+<li><p>封装子类中重复定义的内容</p>
+</li>
+<li><p>定义抽象方法,子类虽然有不同的实现,但是定义时一致的 |       <strong>规范,扩展,回调</strong>       |</p>
+</li>
+</ol>
+<h2 id="15、Java-中-IO-流的种类"><a href="#15、Java-中-IO-流的种类" class="headerlink" title="15、Java 中 IO 流的种类"></a>15、Java 中 IO 流的种类</h2><ul>
+<li><p>按<strong>功能</strong>来分：<strong>输入流</strong>（input）、<strong>输出流</strong>（output）。</p>
+</li>
+<li><p>按<strong>类型</strong>来分：<strong>字节流</strong>和<strong>字符流</strong>。</p>
+</li>
+<li><p>字节流和字符流的<strong>区别</strong>是：<strong>字节流</strong>按 <strong>8 位传输</strong>以<strong>字节为单位</strong>输入输出数据，<strong>字符流</strong>按 <strong>16 位传输</strong>以<strong>字符为单</strong>位输入输出数据。</p>
+</li>
+</ul>
+<h2 id="16、BIO、NIO、AIO的区别"><a href="#16、BIO、NIO、AIO的区别" class="headerlink" title="16、BIO、NIO、AIO的区别"></a>16、BIO、NIO、AIO的区别</h2><ul>
+<li><strong>BIO</strong>：Block IO <strong>同步阻塞</strong>式 IO，就是我们平常使用的传统 IO，它的特点是模式<strong>简单</strong>使用<strong>方便</strong>，<strong>并发处理能力低</strong>。</li>
+<li><strong>NIO</strong>：New IO <strong>同步非阻塞</strong> IO，是<strong>传统 IO 的升级</strong>，客户端和服务器端通过 <strong>Channel</strong>（通道）通讯，实现了<strong>多路复用</strong>。</li>
+<li><strong>AIO</strong>：Asynchronous IO 是 <strong>NIO 的升级</strong>，也叫 <strong>NIO2</strong>，实现了<strong>异步非堵塞</strong> IO ，异步 IO 的操作<strong>基于事件**</strong>和<strong>回调机制</strong>。</li>
+</ul>
+<h2 id="17、Files的常用方法"><a href="#17、Files的常用方法" class="headerlink" title="17、Files的常用方法"></a>17、Files的常用方法</h2><ul>
+<li>Files.<strong>exists</strong>()：检测文件路径<strong>是否存在</strong>。</li>
+<li>Files.<strong>createFile</strong>()：<strong>创建</strong>文件。</li>
+<li>Files.<strong>createDirectory</strong>()：<strong>创建文件夹</strong>。</li>
+<li>Files.<strong>delete</strong>()：<strong>删除一个文件或目录</strong>。</li>
+<li>Files.<strong>copy</strong>()：<strong>复制文件</strong>。</li>
+<li>Files.<strong>move</strong>()：<strong>移动</strong>文件。</li>
+<li>Files.<strong>size</strong>()：<strong>查看文件个数</strong>。</li>
+<li>Files.<strong>read</strong>()：<strong>读取</strong>文件。</li>
+<li>Files.<strong>write</strong>()：<strong>写入</strong>文件。</li>
+</ul>
+<h2 id="18、JAVA创建对象的方式"><a href="#18、JAVA创建对象的方式" class="headerlink" title="18、JAVA创建对象的方式"></a>18、JAVA创建对象的方式</h2><ul>
+<li><p><strong>new</strong>创建新对象</p>
+</li>
+<li><p>通过<strong>反射机制</strong></p>
+</li>
+<li><p>采用<strong>clone机制</strong></p>
+</li>
+<li><p>通过<strong>序列化机制</strong></p>
+<p>前两者都需要显式地调用<strong>构造方法</strong>. </p>
+</li>
+</ul>
+<p>对于clone机制,需要注意<strong>浅拷贝</strong>和<strong>深拷贝</strong>的区别,</p>
+<p>序列化可以通过实现<strong>Externalizable</strong>或者<strong>Serializable</strong></p>
+<h2 id="19-int和Integer的区别"><a href="#19-int和Integer的区别" class="headerlink" title="19 int和Integer的区别"></a>19 int和Integer的区别</h2><ol>
+<li>Integer是int的<strong>包装类</strong>，int则是java的一种基本数据类型</li>
+</ol>
+<ol start="2">
+<li>Integer变量<strong>必须实例化</strong>后<strong>才能使用</strong>，而int变量不需要</li>
+</ol>
+<ol start="3">
+<li>Integer实际是<strong>对象的引用</strong>，当new一个Integer时，实际上是生成一个指针指向此对象；而int则是<strong>直接存储数据值</strong></li>
+</ol>
+<ol start="4">
+<li>Integer的默认值是<strong>null</strong>，int的默认值是<strong>0</strong></li>
+</ol>
+<h2 id="20-隐式转换和显式转换"><a href="#20-隐式转换和显式转换" class="headerlink" title="20 隐式转换和显式转换"></a>20 隐式转换和显式转换</h2><p><strong>隐式</strong>转换：小的数据类型转换成大的数据类型（<strong>小转大</strong>）</p>
+<p><strong>显式</strong>转换：大的数据类型转换成小的数据类型（<strong>大转小</strong>）</p>
+<h2 id="21-拆装箱"><a href="#21-拆装箱" class="headerlink" title="21 拆装箱"></a>21 拆装箱</h2><p><strong>装箱</strong>：将<strong>基本数据类型</strong>转换为<strong>包装器类型</strong></p>
+<p><strong>拆装</strong>：将<strong>包装器类型</strong>转换为<strong>基本数据类型</strong></p>
+<h2 id="22-重写和重载"><a href="#22-重写和重载" class="headerlink" title="22 重写和重载"></a>22 重写和重载</h2><p><strong>重写</strong>：</p>
+<p>1.发生在<strong>父类与子类</strong>之间 </p>
+<p>2.方法名，参数列表，返回类型（除过子类中方法的返回类型是父类中返回类型的子类）必须相同 </p>
+<p>3.访问修饰符的限制一定要大于被重写方法的访问修饰符（public&gt;protected&gt;default&gt;private) </p>
+<p><strong>重载</strong>：</p>
+<p>在一个类中，同名的方法如果有不同的参数列表（<strong>参数类型不同、参数个数不同甚至是参数顺序不同</strong>） </p>
+<p>则视为重载。同时，重载对返回类型没有要求，可以相同也可以不同，但<strong>不能通过返回类型是否相同来</strong> </p>
+<p><strong>判断重载</strong>。 </p>
+<h2 id="23-多态"><a href="#23-多态" class="headerlink" title="23 多态"></a>23 多态</h2><p>多态是<strong>同一个行为</strong>具有<strong>多个不同表现形式</strong>或<strong>形态</strong>的能力。</p>
+<p>多态就是<strong>同一个接口</strong>，<strong>使用不同的实例</strong>而<strong>执行不同操作</strong>。</p>
+<p> 三个必要条件：</p>
+<ul>
+<li>继承</li>
+<li>重写</li>
+<li>父类引用指向子类对象 </li>
+</ul>
+<p>表现形式：</p>
+<p> <strong>方法重载</strong> ， <strong>方法重写</strong> ，抽象类，接口</p>
+<h2 id="24-OOA-OOD-OOP"><a href="#24-OOA-OOD-OOP" class="headerlink" title="24 OOA OOD OOP"></a>24 OOA OOD OOP</h2><p>OOA：面向对象分析</p>
+<p>OOD：面向对象设计</p>
+<p>OOP：面向对象编程 </p>
+<h2 id="25-final-finally-finalize区别"><a href="#25-final-finally-finalize区别" class="headerlink" title="25 final finally finalize区别"></a>25 final finally finalize区别</h2><ul>
+<li>final可以修饰类、变量、方法，修饰类表示该类不能被继承、修饰方法表示该方法不能被重写、修饰变量表示该变量是一个常量不能被重新赋值。</li>
+</ul>
+<ul>
+<li><strong>finally</strong>一般作用在<strong>try-catch代码块</strong>中，在处理异常的时候，通常我们将<strong>一定要执行的代码方法放在finally代码块中</strong>，表示不管是否出现异常，该代码块都会执行，一般用来<strong>存放一些关闭资源的代码</strong>。</li>
+</ul>
+<ul>
+<li><strong>finalize</strong>是一个方法，属于Object类的一个方法，而<strong>Object</strong>类是<strong>所有类的父类</strong>，该方法一般<strong>由垃圾回收器来调用</strong>，当我们调用<strong>System.gc()</strong> 方法的时候，由<strong>垃圾回收器调用finalize()**，</strong>回收垃圾**，一个对象是可回收的最后判断。</li>
+</ul>
+<h2 id="26-this和super的区别"><a href="#26-this和super的区别" class="headerlink" title="26 this和super的区别"></a>26 this和super的区别</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">this</th>
+<th align="center">super</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center">代表当前对象名</td>
+<td align="center">引用当前对象父类中的成员</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">在本类内调用<strong>本类</strong>的其它构造方法</td>
+<td align="center">在子类中调用<strong>父类</strong>的构造方法</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">一个指向本对象的<strong>指针</strong></td>
+<td align="center">一个Java<strong>关键字</strong></td>
+</tr>
+</tbody></table>
+<ul>
+<li>super()和this()均需放在构造方法内第一行。</li>
+<li>this和super不能同时出现在一个构造函数里面，因为this必然会调用其它的构造函数，其它的构造函数必然也会有super语句的存在，所以在同一个构造函数里面有相同的语句，就失去了语句的意义，编译器也不会通过。</li>
+</ul>
+<h2 id="27-static"><a href="#27-static" class="headerlink" title="27 static"></a>27 static</h2><ul>
+<li> 意义 ： 创建<strong>独立于</strong>具体<strong>对象</strong>的<strong>变量</strong>或者<strong>方法</strong> ， <strong>没有创建对象，也能使用属性和调用方法</strong>。 </li>
+<li> 作用 ： <strong>用来形成静态代码块以优化程序性能</strong> ， 只会在<strong>类加载</strong>的时候<strong>执行一次</strong>。因此，很多时候会将一些只需要进行一次的初始化操作都放在static代码块中进行。 </li>
+<li>特点：<ol>
+<li> 被static修饰的变量或者方法是独立于该类的任何对象 , <strong>不属于任何一个实例对象，而是被类的实例对象所共享</strong>。 </li>
+<li> 在该类被第一次加载的时候，就会去加载被static修饰的部分，而且只在类第一次使用时加载并进行初始化，注意这是第一次用就要初始化，后面根据需要是可以再次赋值的。 </li>
+<li> static变量值在<strong>类加载</strong>的时候<strong>分配空间</strong>，以后创建类对象的时候不会重新分配。赋值的话，是可以任意赋值的！ </li>
+<li> 被static修饰的变量或者方法是优先于对象存在的，也就是说当一个类加载完毕之后，即便没有创建对象，也可以去访问。 </li>
+</ol>
+</li>
+<li>应用场景： <ol>
+<li>修饰成员变量 </li>
+<li>修饰成员方法 </li>
+<li>静态代码块</li>
+<li>修饰类【只能修饰内部类也就是静态内部类】</li>
+<li>静态导包 </li>
+</ol>
+</li>
+<li>注意事项：<ol>
+<li> 静态只能访问静态</li>
+<li> 非静态既可以访问非静态的，也可以访问静态的</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/22/Java%E5%9F%BA%E7%A1%80/" data-id="ckk7z7cw60001jchf0jlscz9s" data-title="Java基础" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-MyBatis-Plus" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/22/MyBatis-Plus/" class="article-date">
+  <time class="dt-published" datetime="2021-01-22T07:31:43.000Z" itemprop="datePublished">2021-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/22/MyBatis-Plus/">MyBatis-Plus</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-特性"><a href="#1-特性" class="headerlink" title="1 特性"></a>1 特性</h2><ul>
+<li><strong>无侵入</strong>：只增强不改变</li>
+<li><strong>损耗小</strong>：启动即注入CURD，性能基本无损耗，直接面向对象操作</li>
+<li>强大的<strong>CRUD</strong>操作：内置通用Mapper、通过Service，通过少量配置实现表单的大部分CRUD操作</li>
+<li>支持<strong>Lambda</strong>形式调用</li>
+<li>支持<strong>主键自动生成</strong></li>
+<li>支持<strong>ActiveRecord</strong>模式：实体类只需继承Model类即可进行CRUD操作</li>
+<li>支持自定义全局通用操作：支持全局通用方法注入</li>
+<li><strong>内置代码生成器</strong>：采用代码或者Maven插件可快速生成Mapper、Model、Service、Controller层代码，支持模板引擎</li>
+<li>内置<strong>分页插件</strong>：基于Mybatis物理分页，无需关系具体操作，配置好插件后，写分页等同于List查询</li>
+<li>分页插件支持多种数据库： 支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库 </li>
+<li>内置全局<strong>拦截插件</strong>：提供全表delete、update操作智能分析阻断，也快自定义拦截规则</li>
+</ul>
+<h2 id="2-快速入门"><a href="#2-快速入门" class="headerlink" title="2 快速入门"></a>2 快速入门</h2><p>使用第三方组件： </p>
+<p>1、导入对应的依赖 </p>
+<p>2、研究依赖如何配置 </p>
+<p>3、代码如何编写 </p>
+<p>4、提高扩展技术能力！</p>
+<h2 id="3-步骤"><a href="#3-步骤" class="headerlink" title="3 步骤"></a>3 步骤</h2><p>1、创建数据库 mybatis_plus </p>
+<p>2、创建user表 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS user;</span><br><span class="line"></span><br><span class="line">CREATE TABLE user</span><br><span class="line">(</span><br><span class="line">	<span class="function">id <span class="title">BIGINT</span><span class="params">(<span class="number">20</span>)</span> NOT NULL COMMENT &#x27;主键ID&#x27;,</span></span><br><span class="line"><span class="function">	name <span class="title">VARCHAR</span><span class="params">(<span class="number">30</span>)</span> NULL DEFAULT NULL COMMENT &#x27;姓名&#x27;,</span></span><br><span class="line"><span class="function">	age <span class="title">INT</span><span class="params">(<span class="number">11</span>)</span> NULL DEFAULT NULL COMMENT &#x27;年龄&#x27;,</span></span><br><span class="line"><span class="function">	email <span class="title">VARCHAR</span><span class="params">(<span class="number">50</span>)</span> NULL DEFAULT NULL COMMENT &#x27;邮箱&#x27;,</span></span><br><span class="line"><span class="function">	PRIMARY <span class="title">KEY</span> <span class="params">(id)</span></span></span><br><span class="line"><span class="function">)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">INSERT INTO <span class="title">user</span> <span class="params">(id, name, age, email)</span> VALUES</span></span><br><span class="line"><span class="function"><span class="params">(<span class="number">1</span>, <span class="string">&#x27;Jone&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;test1@baomidou.com&#x27;</span>)</span>,</span></span><br><span class="line"><span class="function"><span class="params">(<span class="number">2</span>, <span class="string">&#x27;Jack&#x27;</span>, <span class="number">20</span>, <span class="string">&#x27;test2@baomidou.com&#x27;</span>)</span>,</span></span><br><span class="line"><span class="function"><span class="params">(<span class="number">3</span>, <span class="string">&#x27;Tom&#x27;</span>, <span class="number">28</span>, <span class="string">&#x27;test3@baomidou.com&#x27;</span>)</span>,</span></span><br><span class="line"><span class="function"><span class="params">(<span class="number">4</span>, <span class="string">&#x27;Sandy&#x27;</span>, <span class="number">21</span>, <span class="string">&#x27;test4@baomidou.com&#x27;</span>)</span>,</span></span><br><span class="line"><span class="function"><span class="params">(<span class="number">5</span>, <span class="string">&#x27;Billie&#x27;</span>, <span class="number">24</span>, <span class="string">&#x27;test5@baomidou.com&#x27;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>3、编写项目，初始化项目！使用SpringBoot初始化！ </p>
+<p>4、导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 数据库驱动 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- lombok --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!--mybatis-plus--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>说明：我们使用 mybatis-plus 可以节省我们大量的代码，尽量不要同时导入 mybatis 和 mybatis</p>
+<p>plus！版本的差异！</p>
+<p>5、连接数据库！这一步和 mybatis 相同！ </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mysql 5 驱动不同 com.mysql.jdbc.Driver </span></span><br><span class="line"><span class="comment"># mysql 8 驱动不同 com.mysql.cj.jdbc.Driver、需要增加时区的配置 serverTimezone=GMT%2B8 </span></span><br><span class="line"><span class="meta">spring.datasource.username</span>=<span class="string">root </span></span><br><span class="line"><span class="meta">spring.datasource.password</span>=<span class="string">123456 spring.datasource.url=jdbc:mysql://localhost:3306/mybatis_plus? useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT%2B8 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">  <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/mybatis_plus?</span> <span class="string">useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT%2B8</span></span><br><span class="line">  <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">  <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>6、传统方式pojo-dao（连接mybatis，配置mapper.xml文件）-service-controller </p>
+<p>6、使用了mybatis-plus 之后</p>
+<ul>
+<li><p>pojo</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>mapper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> <span class="keyword">extends</span> <span class="title">BaseMapper</span>&lt;<span class="title">User</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在 Spring Boot 启动类中添加 <code>@MapperScan</code> 注解，扫描 Mapper 文件夹： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//扫描</span></span><br><span class="line">mapper<span class="meta">@MapperScan(&quot;com.cro.mapper&quot;)</span></span><br><span class="line"><span class="meta">@SpringBoot</span></span><br><span class="line">Applicationpublic <span class="class"><span class="keyword">class</span> <span class="title">MybatisPlusApplication</span> </span>&#123;    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        		  		       	</span><br><span class="line">     	SpringApplication.run(MybatisPlusApplication.class, args); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//继承了BaseMapper，所有方法来自父类,也快有自己扩展方法</span></span><br><span class="line"><span class="meta">@Autowiredprivate</span> UserMapper userMapper;</span><br><span class="line"><span class="meta">@Testvoid</span> contextLoads() &#123;    </span><br><span class="line">    <span class="comment">//查询全部用户    </span></span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(<span class="keyword">null</span>);    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">User(id&#x3D;1, name&#x3D;Jone, age&#x3D;18, email&#x3D;test1@baomidou.com)</span><br><span class="line">User(id&#x3D;2, name&#x3D;Jack, age&#x3D;20, email&#x3D;test2@baomidou.com)</span><br><span class="line">User(id&#x3D;3, name&#x3D;Tom, age&#x3D;28, email&#x3D;test3@baomidou.com)</span><br><span class="line">User(id&#x3D;4, name&#x3D;Sandy, age&#x3D;21, email&#x3D;test4@baomidou.com)</span><br><span class="line">User(id&#x3D;5, name&#x3D;Billie, age&#x3D;24, email&#x3D;test5@baomidou.com)</span><br></pre></td></tr></table></figure>
+<p>1、SQL谁帮我们写的 ? MyBatis-Plus 都写好了 </p>
+</li>
+</ul>
+<p>2、方法哪里来的？ MyBatis-Plus 都写好了</p>
+<h2 id="4-配置日志"><a href="#4-配置日志" class="headerlink" title="4 配置日志"></a>4 配置日志</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mybatis-plus:</span>   </span><br><span class="line">	<span class="attr">configuration:</span>     </span><br><span class="line">		<span class="attr">log-impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-CRUD"><a href="#5-CRUD" class="headerlink" title="5 CRUD"></a>5 CRUD</h2><blockquote>
+<p>插入测试</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试插入</span></span><br><span class="line"><span class="meta">@Testvoid</span> testInsert()&#123;    </span><br><span class="line">	User user = <span class="keyword">new</span> User();    </span><br><span class="line">	user.setName(<span class="string">&quot;天不生TheShy&quot;</span>);    </span><br><span class="line">	user.setAge(<span class="number">20</span>);    </span><br><span class="line">	user.setEmail(<span class="string">&quot;255@qq.com&quot;</span>);    </span><br><span class="line">	<span class="comment">//自动生成id    </span></span><br><span class="line">	<span class="keyword">int</span> result = userMapper.insert(user);    </span><br><span class="line">	System.out.println(result);    </span><br><span class="line">	System.out.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>数据库插入的id的默认值为：全局的唯一id </p>
+</blockquote>
+<h2 id="6-主键生成策略"><a href="#6-主键生成策略" class="headerlink" title="6 主键生成策略"></a>6 主键生成策略</h2><blockquote>
+<p>默认 ID_WORKER 全局唯一id</p>
+</blockquote>
+<p><strong>雪花算法：</strong></p>
+<p>snowflflake是Twitter开源的分布式ID生成算法，结果是一个long型的ID。其核心思想是：使用41bit作为 </p>
+<p>毫秒数，10bit作为机器的ID（5个bit是数据中心，5个bit的机器ID），12bit作为毫秒内的流水号（意味 </p>
+<p>着每个节点在每毫秒可以产生 4096 个 ID），最后还有一个符号位，永远是0。可以保证几乎全球唯 </p>
+<p>一！</p>
+<blockquote>
+<p>其他源码解释</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">IdType</span> </span>&#123; </span><br><span class="line">	AUTO(<span class="number">0</span>), <span class="comment">// 数据库id自增 </span></span><br><span class="line">	NONE(<span class="number">1</span>), <span class="comment">// 未设置主键 </span></span><br><span class="line">	INPUT(<span class="number">2</span>), <span class="comment">// 手动输入 </span></span><br><span class="line">	ID_WORKER(<span class="number">3</span>), <span class="comment">// 默认的全局唯一id </span></span><br><span class="line">	UUID(<span class="number">4</span>), <span class="comment">// 全局唯一id </span></span><br><span class="line">	<span class="function">uuid <span class="title">ID_WORKER_STR</span><span class="params">(<span class="number">5</span>)</span></span>; <span class="comment">//ID_WORKER 字符串表示法 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="7-更新"><a href="#7-更新" class="headerlink" title="7 更新"></a>7 更新</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//更新测试</span></span><br><span class="line"><span class="meta">@Testvoid</span> testUpdate()&#123;    </span><br><span class="line">	User user = <span class="keyword">new</span> User();    </span><br><span class="line">	user.setId(<span class="number">5L</span>);    </span><br><span class="line">	user.setName(<span class="string">&quot;LPL万古如长夜&quot;</span>);    </span><br><span class="line">	<span class="keyword">int</span> i = userMapper.updateById(user);    </span><br><span class="line">	System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-自动填充"><a href="#8-自动填充" class="headerlink" title="8 自动填充"></a>8 自动填充</h2><p>创建时间、修改时间！这些个操作一遍都是自动化完成的，我们不希望手动更新！ </p>
+<p>阿里巴巴开发手册：所有的数据库表：gmt_create、gmt_modifified几乎所有的表都要配置上！而且需 </p>
+<p>要自动化</p>
+<blockquote>
+<p>方式一：数据库级别（工作中不允许你修改数据库，不建议）</p>
+</blockquote>
+<p>1、在表中新增字段 create_time, update_time </p>
+<p><img src="D:\笔记\java笔记\image\自动填充.png"></p>
+<blockquote>
+<p>方式二：代码级别</p>
+</blockquote>
+<p>1、实体类字段属性上需要增加注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字段添加填充内容 </span></span><br><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT)</span></span><br><span class="line"><span class="keyword">private</span> Date createTime;</span><br><span class="line"><span class="meta">@TableField(fill = FieldFill.UPDATE)</span></span><br><span class="line"><span class="keyword">private</span> Date updateTime;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">FieldFill</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 默认不处理</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    DEFAULT,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入填充字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    INSERT,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 更新填充字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    UPDATE,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入和更新填充字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    INSERT_UPDATE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、实体类字段属性上需要增加注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字段添加填充内容</span></span><br><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT)</span></span><br><span class="line"><span class="keyword">private</span> LocalDateTime createTime;</span><br><span class="line"><span class="meta">@TableField(fill = FieldFill.INSERT_UPDATE)</span></span><br><span class="line"><span class="keyword">private</span> LocalDateTime updateTime;</span><br></pre></td></tr></table></figure>
+<p>3、编写处理器来处理这个注解即可！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="comment">//把处理器添加到IOC容器</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMetaObjectHandler</span> <span class="keyword">implements</span> <span class="title">MetaObjectHandler</span> </span>&#123;</span><br><span class="line">    <span class="comment">//插入时的填充策略</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;start insert fill&quot;</span>);</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;createTime&quot;</span>, LocalDateTime.now(),metaObject);</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;updateTime&quot;</span>, LocalDateTime.now(),metaObject);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">     <span class="comment">//更新时的填充策略</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;start update fill&quot;</span>);</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">&quot;updateTime&quot;</span>, LocalDateTime.now(),metaObject);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、mysql和java对应数据类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">SQL</th>
+<th align="center">Java</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">date</td>
+<td align="center">LoaclDate</td>
+</tr>
+<tr>
+<td align="center">time</td>
+<td align="center">LocalTime</td>
+</tr>
+<tr>
+<td align="center">timestamp</td>
+<td align="center">LocalDateTime</td>
+</tr>
+</tbody></table>
+<p>5、测试插入 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试插入</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testInsert</span><span class="params">()</span></span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(<span class="string">&quot;Knight&quot;</span>);</span><br><span class="line">    user.setAge(<span class="number">21</span>);</span><br><span class="line">    user.setEmail(<span class="string">&quot;244@qq.com&quot;</span>);</span><br><span class="line">    <span class="comment">//自动生成id</span></span><br><span class="line">    <span class="keyword">int</span> result = userMapper.insert(user);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6、更新测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//更新测试</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testUpdate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setId(<span class="number">2L</span>);</span><br><span class="line">    user.setName(<span class="string">&quot;LPL万古如长夜&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = userMapper.updateById(user);</span><br><span class="line">    System.out.println(i);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="9-乐观锁"><a href="#9-乐观锁" class="headerlink" title="9 乐观锁"></a>9 乐观锁</h2><blockquote>
+<p>乐观锁：故名思意十分乐观，它总是认为不会出现问题，无论干什么不去上锁！如果出现了问题， </p>
+<p>再次更新值测试 </p>
+<p>悲观锁：故名思意十分悲观，它总是认为总是出现问题，无论干什么都会上锁！再去操作！ </p>
+</blockquote>
+<p>我们这里主要讲解 乐观锁机制！ </p>
+<p>乐观锁实现方式： </p>
+<ul>
+<li><p>取出记录时，获取当前 version </p>
+</li>
+<li><p>更新时，带上这个version </p>
+</li>
+<li><p>执行更新时， set version = newVersion where version = oldVersion </p>
+</li>
+<li><p>如果version不对，就更新失败</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">乐观锁：<span class="number">1</span>、先查询，获得版本号 version <span class="operator">=</span> <span class="number">1</span> </span><br><span class="line"><span class="comment">-- A </span></span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> name <span class="operator">=</span> &quot;kuangshen&quot;, version <span class="operator">=</span> version <span class="operator">+</span> <span class="number">1</span> </span><br><span class="line"><span class="keyword">where</span> id <span class="operator">=</span> <span class="number">2</span> <span class="keyword">and</span> version <span class="operator">=</span> <span class="number">1</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">-- B 线程抢先完成，这个时候 version = 2，会导致 A 修改失败！ </span></span><br><span class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> name <span class="operator">=</span> &quot;kuangshen&quot;, version <span class="operator">=</span> version <span class="operator">+</span> <span class="number">1</span> </span><br><span class="line"><span class="keyword">where</span> id <span class="operator">=</span> <span class="number">2</span> <span class="keyword">and</span> version <span class="operator">=</span> <span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>测试一下MP的乐观锁插件</p>
+</blockquote>
+<ol>
+<li><p>数据库添加version字段 int 10 默认 1</p>
+</li>
+<li><p>给实体类加对应的字段</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Version</span></span><br><span class="line"><span class="keyword">private</span> Integer version;</span><br></pre></td></tr></table></figure></li>
+<li><p>注册组件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//扫描mapper</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.cro.mapper&quot;)</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br><span class="line"><span class="comment">//配置类</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisPlusConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注册乐观锁插件</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> OptimisticLockerInterceptor <span class="title">optimisticLockerInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OptimisticLockerInterceptor();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试乐观锁成功</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testOptimisticLocker</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//1.查询用户信息</span></span><br><span class="line">    User user = userMapper.selectById(<span class="number">1L</span>);</span><br><span class="line">    <span class="comment">//2.修改用户信息</span></span><br><span class="line">    user.setName(<span class="string">&quot;LPL万古如长夜&quot;</span>);</span><br><span class="line">    user.setEmail(<span class="string">&quot;288999@qq.com&quot;</span>);</span><br><span class="line">    <span class="comment">//3.执行更新操作</span></span><br><span class="line">    userMapper.updateById(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试乐观锁失败,多线程</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testOptimisticLocker2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//线程1</span></span><br><span class="line">    User user = userMapper.selectById(<span class="number">1L</span>);</span><br><span class="line">    user.setName(<span class="string">&quot;uzi&quot;</span>);</span><br><span class="line">    user.setEmail(<span class="string">&quot;333@qq.com&quot;</span>);</span><br><span class="line">    <span class="comment">//线程2</span></span><br><span class="line">    User user2 = userMapper.selectById(<span class="number">1L</span>);</span><br><span class="line">    user2.setName(<span class="string">&quot;tian&quot;</span>);</span><br><span class="line">    user2.setEmail(<span class="string">&quot;888@qq.com&quot;</span>);</span><br><span class="line">    userMapper.updateById(user2);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果没有乐观锁就会覆盖插队线程的值！</span></span><br><span class="line">    userMapper.updateById(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h2 id="10-查询操作"><a href="#10-查询操作" class="headerlink" title="10 查询操作"></a>10 查询操作</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询操作</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testSelectById</span><span class="params">()</span></span>&#123;</span><br><span class="line">    User user = userMapper.selectById(<span class="number">1L</span>);</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试批量查询</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testSelectBatchIds</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectBatchIds(Arrays.asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>));</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试条件查询之一Map</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testSelectByMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">    HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="comment">//自定义要查询的条件</span></span><br><span class="line">    map.put(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;uzi&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;age&quot;</span>,<span class="number">21</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectByMap(map);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="11-分页查询"><a href="#11-分页查询" class="headerlink" title="11 分页查询"></a>11 分页查询</h2><blockquote>
+<ol>
+<li>原始的 limit 进行分页 </li>
+<li>pageHelper 第三方插件</li>
+<li>MP 其实也内置了分页插件！</li>
+</ol>
+</blockquote>
+<p>1、配置分页插件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//分页插件</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> PaginationInterceptor <span class="title">paginationInterceptor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PaginationInterceptor();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、直接使用Page对象即可！ </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试分页查询</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testPage</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Page&lt;User&gt; page = <span class="keyword">new</span> Page&lt;&gt;(<span class="number">1</span>,<span class="number">5</span>);</span><br><span class="line">    userMapper.selectPage(page,<span class="keyword">null</span>);</span><br><span class="line">    page.getRecords().forEach(System.out::println);</span><br><span class="line">    System.out.println(<span class="string">&quot;Total:&quot;</span>+page.getTotal());</span><br><span class="line">    System.out.println(<span class="string">&quot;Size:&quot;</span>+page.getSize());</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="12-删除操作"><a href="#12-删除操作" class="headerlink" title="12 删除操作"></a>12 删除操作</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试删除操作</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testDeleteById</span><span class="params">()</span></span>&#123;</span><br><span class="line">    userMapper.deleteById(<span class="number">8L</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试批量删除</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testDeleteBatchId</span><span class="params">()</span></span>&#123;</span><br><span class="line">    userMapper.deleteBatchIds(Arrays.asList(<span class="number">7L</span>,<span class="number">6L</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过Map删除</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testDeleteMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">    HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;haha&quot;</span>);</span><br><span class="line">    userMapper.deleteByMap(map);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="13-逻辑删除"><a href="#13-逻辑删除" class="headerlink" title="13 逻辑删除"></a>13 逻辑删除</h2><blockquote>
+<p>物理删除 ：从数据库中直接移除  </p>
+<p>逻辑删除 ：再数据库中没有被移除，而是通过一个变量来让他失效！ deleted = 0 =&gt; deleted = 1 </p>
+</blockquote>
+<p>1、在数据表中增加一个 deleted 字段 int 1 默认0</p>
+<p>2、实体类中增加属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//逻辑删除</span></span><br><span class="line"><span class="meta">@TableLogic</span></span><br><span class="line"><span class="keyword">private</span> Integer deleted;</span><br></pre></td></tr></table></figure>
+<p>3、配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mybatis-plus:</span></span><br><span class="line">   <span class="attr">configuration:</span></span><br><span class="line">     <span class="attr">db-config:</span></span><br><span class="line">       <span class="attr">logic-delete-field:</span> <span class="string">flag</span>  <span class="comment"># 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)</span></span><br><span class="line">       <span class="attr">logic-delete-value:</span> <span class="number">1</span> <span class="comment"># 逻辑已删除值(默认为 1)</span></span><br><span class="line">       <span class="attr">logic-not-delete-value:</span> <span class="number">0</span> <span class="comment"># 逻辑未删除值(默认为 0)</span></span><br></pre></td></tr></table></figure>
+<h2 id="14-执行-SQL-分析打印"><a href="#14-执行-SQL-分析打印" class="headerlink" title="14 执行 SQL 分析打印"></a>14 执行 SQL 分析打印</h2><p>作用：性能分析拦截器，用于输出每条 SQL 语句及其执行时间 </p>
+<p>MP也提供性能分析插件，如果超过这个时间就停止运行！</p>
+<p>1、引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>p6spy<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>p6spy<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>最新版本<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.p6spy.engine.spy.P6SpyDriver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:p6spy:mysql://localhost:3306/mybatis_plus?</span> <span class="string">useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT%2B8</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+<p>3、resources下创建 spy.properties </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#3.2.1以上使用</span></span><br><span class="line"><span class="attr">modulelist</span>=<span class="string">com.baomidou.mybatisplus.extension.p6spy.MybatisPlusLogFactory,com.p6spy.engine.outage.P6OutageFactory</span></span><br><span class="line"><span class="comment">#3.2.1以下使用或者不配置</span></span><br><span class="line"><span class="comment">#modulelist=com.p6spy.engine.logging.P6LogFactory,com.p6spy.engine.outage.P6OutageFactory</span></span><br><span class="line"><span class="comment"># 自定义日志打印</span></span><br><span class="line"><span class="attr">logMessageFormat</span>=<span class="string">com.baomidou.mybatisplus.extension.p6spy.P6SpyLogger</span></span><br><span class="line"><span class="comment">#日志输出到控制台</span></span><br><span class="line"><span class="attr">appender</span>=<span class="string">com.baomidou.mybatisplus.extension.p6spy.StdoutLogger</span></span><br><span class="line"><span class="comment"># 使用日志系统记录 sql</span></span><br><span class="line"><span class="comment">#appender=com.p6spy.engine.spy.appender.Slf4JLogger</span></span><br><span class="line"><span class="comment"># 设置 p6spy driver 代理</span></span><br><span class="line"><span class="attr">deregisterdrivers</span>=<span class="string">true</span></span><br><span class="line"><span class="comment"># 取消JDBC URL前缀</span></span><br><span class="line"><span class="attr">useprefix</span>=<span class="string">true</span></span><br><span class="line"><span class="comment"># 配置记录 Log 例外,可去掉的结果集有error,info,batch,debug,statement,commit,rollback,result,resultset.</span></span><br><span class="line"><span class="attr">excludecategories</span>=<span class="string">info,debug,result,commit,resultset</span></span><br><span class="line"><span class="comment"># 日期格式</span></span><br><span class="line"><span class="attr">dateformat</span>=<span class="string">yyyy-MM-dd HH:mm:ss</span></span><br><span class="line"><span class="comment"># 实际驱动可多个</span></span><br><span class="line"><span class="comment">#driverlist=org.h2.Driver</span></span><br><span class="line"><span class="comment"># 是否开启慢SQL记录</span></span><br><span class="line"><span class="attr">outagedetection</span>=<span class="string">true</span></span><br><span class="line"><span class="comment"># 慢SQL记录标准 2 秒</span></span><br><span class="line"><span class="attr">outagedetectioninterval</span>=<span class="string">2</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="15-条件构造器"><a href="#15-条件构造器" class="headerlink" title="15 条件构造器"></a>15 条件构造器</h2><table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="center">作用</th>
+<th align="center">例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">eq</td>
+<td align="center">等于=</td>
+<td align="center"><code>eq(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name = &#39;老王&#39;</code></td>
+</tr>
+<tr>
+<td align="center">ne</td>
+<td align="center">不等于&lt;&gt;</td>
+<td align="center"><code>ne(&quot;name&quot;, &quot;老王&quot;)</code>—&gt;<code>name &lt;&gt; &#39;老王&#39;</code></td>
+</tr>
+<tr>
+<td align="center">gt</td>
+<td align="center">大于&gt;</td>
+<td align="center"><code>gt(&quot;age&quot;, 18)</code>—&gt;<code>age &gt; 18</code></td>
+</tr>
+<tr>
+<td align="center">ge</td>
+<td align="center">大于等于&gt;=</td>
+<td align="center"><code>ge(&quot;age&quot;, 18)</code>—&gt;<code>age &gt;= 18</code></td>
+</tr>
+<tr>
+<td align="center">It</td>
+<td align="center">小于&lt;</td>
+<td align="center"><code>lt(&quot;age&quot;, 18)</code>—&gt;<code>age &lt; 18</code></td>
+</tr>
+<tr>
+<td align="center">Ie</td>
+<td align="center">小于等于&gt;=</td>
+<td align="center"><code>le(&quot;age&quot;, 18)</code>—&gt;<code>age &lt;= 18</code></td>
+</tr>
+<tr>
+<td align="center">between</td>
+<td align="center">值1和值2之间</td>
+<td align="center"><code>between(&quot;age&quot;, 18, 30)</code>—&gt;<code>age between 18 and 30</code></td>
+</tr>
+<tr>
+<td align="center">notBetween</td>
+<td align="center">不在值1和值2之间</td>
+<td align="center"><code>notBetween(&quot;age&quot;, 18, 30)</code>—&gt;<code>age not between 18 and 30</code></td>
+</tr>
+<tr>
+<td align="center">like</td>
+<td align="center">like’%值%’</td>
+<td align="center"><code>like(&quot;name&quot;, &quot;王&quot;)</code>—&gt;<code>name like &#39;%王%&#39;</code></td>
+</tr>
+<tr>
+<td align="center">notLike</td>
+<td align="center">notLike ‘%值%</td>
+<td align="center"><code>notLike(&quot;name&quot;, &quot;王&quot;)</code>—&gt;<code>name not like &#39;%王%&#39;</code></td>
+</tr>
+<tr>
+<td align="center">likeLeft</td>
+<td align="center">like’%值’</td>
+<td align="center"><code>likeLeft(&quot;name&quot;, &quot;王&quot;)</code>—&gt;<code>name like &#39;%王&#39;</code></td>
+</tr>
+<tr>
+<td align="center">likeRight</td>
+<td align="center">like’值%’</td>
+<td align="center"><code>likeRight(&quot;name&quot;, &quot;王&quot;)</code>—&gt;<code>name like &#39;王%&#39;</code></td>
+</tr>
+<tr>
+<td align="center">isNull</td>
+<td align="center">字段为空</td>
+<td align="center"><code>isNull(&quot;name&quot;)</code>—&gt;<code>name is null</code></td>
+</tr>
+<tr>
+<td align="center">isNotNull</td>
+<td align="center">字段不为空</td>
+<td align="center"><code>isNotNull(&quot;name&quot;)</code>—&gt;<code>name is not null</code></td>
+</tr>
+<tr>
+<td align="center">in</td>
+<td align="center">字段 IN ()</td>
+<td align="center"><code>in(&quot;age&quot;,&#123;1,2,3&#125;)</code>—&gt;<code>age in (1,2,3)</code></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">字段 IN (v0, v1)</td>
+<td align="center"><code>in(&quot;age&quot;, 1, 2, 3)</code>—&gt;<code>age in (1,2,3)</code></td>
+</tr>
+<tr>
+<td align="center">notIn</td>
+<td align="center">字段 NOT IN()</td>
+<td align="center"><code>notIn(&quot;age&quot;,&#123;1,2,3&#125;)</code>—&gt;<code>age not in (1,2,3)</code></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">字段 NOT IN (v0, v1)</td>
+<td align="center"><code>notIn(&quot;age&quot;, 1, 2, 3)</code>—&gt;<code>age not in (1,2,3)</code></td>
+</tr>
+<tr>
+<td align="center">inSql</td>
+<td align="center">字段 IN ( sql语句 )</td>
+<td align="center"><code>inSql(&quot;age&quot;, &quot;1,2,3,4,5,6&quot;)</code>—&gt;<code>age in (1,2,3,4,5,6)</code></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><code>inSql(&quot;id&quot;, &quot;select id from table where id &lt; 3&quot;)</code>—&gt;<code>id in (select id from table where id &lt; 3)</code></td>
+</tr>
+<tr>
+<td align="center">notInSql</td>
+<td align="center">字段 NOT IN ( sql语句 )</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">groupBy</td>
+<td align="center">GROUP BY 字段</td>
+<td align="center"><code>groupBy(&quot;id&quot;, &quot;name&quot;)</code>—&gt;<code>group by id,name</code></td>
+</tr>
+<tr>
+<td align="center">orderByAsc</td>
+<td align="center">ORDER BY 字段, … ASC</td>
+<td align="center"><code>orderByAsc(&quot;id&quot;, &quot;name&quot;)</code>—&gt;<code>order by id ASC,name ASC</code></td>
+</tr>
+<tr>
+<td align="center">orderByDesc</td>
+<td align="center">ORDER BY 字段, … DESC</td>
+<td align="center"><code>orderByDesc(&quot;id&quot;, &quot;name&quot;)</code>—&gt;<code>order by id DESC,name DESC</code></td>
+</tr>
+<tr>
+<td align="center">orderBy</td>
+<td align="center">ORDER BY 字段</td>
+<td align="center"><code>orderBy(true, true, &quot;id&quot;, &quot;name&quot;)</code>—&gt;<code>order by id ASC,name ASC</code></td>
+</tr>
+<tr>
+<td align="center">having</td>
+<td align="center">HAVING ( sql语句 )</td>
+<td align="center"><code>having(&quot;sum(age) &gt; 10&quot;)</code>—&gt;<code>having sum(age) &gt; 10``having(&quot;sum(age) &gt; &#123;0&#125;&quot;, 11)</code>—&gt;<code>having sum(age) &gt; 11</code></td>
+</tr>
+<tr>
+<td align="center">func</td>
+<td align="center">func 方法(主要方便在出现if…else下调用不同方法能不断链)</td>
+<td align="center">func(i -&gt; if(true) {i.eq(“id”, 1)} else {i.ne(“id”, 1)})</td>
+</tr>
+<tr>
+<td align="center">or</td>
+<td align="center">拼接 OR</td>
+<td align="center"><code>eq(&quot;id&quot;,1).or().eq(&quot;name&quot;,&quot;老王&quot;)</code>—&gt;<code>id = 1 or name = &#39;老王&#39;</code></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">OR 嵌套</td>
+<td align="center"><code>or(i -&gt; i.eq(&quot;name&quot;, &quot;李白&quot;).ne(&quot;status&quot;, &quot;活着&quot;))</code>—&gt;<code>or (name = &#39;李白&#39; and status &lt;&gt; &#39;活着&#39;)</code></td>
+</tr>
+<tr>
+<td align="center">and</td>
+<td align="center">AND 嵌套</td>
+<td align="center"><code>and(i -&gt; i.eq(&quot;name&quot;, &quot;李白&quot;).ne(&quot;status&quot;, &quot;活着&quot;))</code>—&gt;<code>and (name = &#39;李白&#39; and status &lt;&gt; &#39;活着&#39;)</code></td>
+</tr>
+<tr>
+<td align="center">nested</td>
+<td align="center">正常嵌套 不带 AND 或者 OR</td>
+<td align="center"><code>nested(i -&gt; i.eq(&quot;name&quot;, &quot;李白&quot;).ne(&quot;status&quot;, &quot;活着&quot;))</code>—&gt;<code>(name = &#39;李白&#39; and status &lt;&gt; &#39;活着&#39;)</code></td>
+</tr>
+<tr>
+<td align="center">apply</td>
+<td align="center">拼接 sql</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">last</td>
+<td align="center">无视优化规则直接拼接到 sql 的最后(<strong>只能调用一次</strong>,多次调用以最后一次为准 有sql注入的风险,请谨慎使用)</td>
+<td align="center"><code>last(&quot;limit 1&quot;)</code></td>
+</tr>
+<tr>
+<td align="center">exists</td>
+<td align="center">拼接 EXISTS ( sql语句 )</td>
+<td align="center"><code>exists(&quot;select id from table where age = 1&quot;)</code>—&gt;<code>exists (select id from table where age = 1)</code></td>
+</tr>
+<tr>
+<td align="center">notExists</td>
+<td align="center">拼接 NOT EXISTS ( sql语句 )</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">QueryWrapper</td>
+<td align="center">select</td>
+<td align="center">设置查询字段</td>
+<td align="center">select(“id”, “name”, “age”)<br />select(i -&gt; i.getProperty().startsWith(“test”))</td>
+</tr>
+<tr>
+<td align="center">UpdateWrapper</td>
+<td align="center">set</td>
+<td align="center">SQL SET 字段</td>
+<td align="center">set(“name”, “老李头”)<br /><code>set(&quot;name&quot;, &quot;&quot;)</code>—&gt;数据库字段值变为<strong>空字符串</strong><code>set(&quot;name&quot;, null)</code>—&gt;数据库字段值变为<code>null</code></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">setSql</td>
+<td align="center">设置 SET 部分 SQL</td>
+<td align="center">setSql(“name = ‘老李头’”)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">lambda</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="使用-Wrapper-自定义SQL"><a href="#使用-Wrapper-自定义SQL" class="headerlink" title="使用 Wrapper 自定义SQL"></a>使用 Wrapper 自定义SQL</h3><h3 id="Service-java"><a href="#Service-java" class="headerlink" title="Service.java"></a>Service.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlMapper.getAll(Wrappers.&lt;MysqlData&gt;lambdaQuery().eq(MysqlData::getGroup, <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="方案一-注解方式-Mapper-java"><a href="#方案一-注解方式-Mapper-java" class="headerlink" title="方案一 注解方式 Mapper.java"></a>方案一 注解方式 Mapper.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from mysql_data $&#123;ew.customSqlSegment&#125;&quot;)</span></span><br><span class="line"><span class="function">List&lt;MysqlData&gt; <span class="title">getAll</span><span class="params">(<span class="meta">@Param(Constants.WRAPPER)</span> Wrapper wrapper)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="方案二-XML形式-Mapper-xml"><a href="#方案二-XML形式-Mapper-xml" class="headerlink" title="方案二 XML形式 Mapper.xml"></a>方案二 XML形式 Mapper.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;MysqlData&quot;</span>&gt;</span></span><br><span class="line">	SELECT * FROM mysql_data $&#123;ew.customSqlSegment&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>1、查询name不为空，并且邮箱不为空，年龄大于等于12岁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//查询name不为空，并且邮箱不为空，年龄大于等于12岁</span></span><br><span class="line">    QueryWrapper&lt;User&gt; wrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    wrapper</span><br><span class="line">            .isNotNull(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">            .isNotNull(<span class="string">&quot;email&quot;</span>)</span><br><span class="line">            .ge(<span class="string">&quot;age&quot;</span>,<span class="number">12</span>);</span><br><span class="line">    userMapper.selectList(wrapper).forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123; </span><br><span class="line"><span class="comment">// 查询名字狂神说 </span></span><br><span class="line">QueryWrapper&lt;User&gt; wrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;(); </span><br><span class="line">wrapper.eq(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;狂神说&quot;</span>); </span><br><span class="line">User user = userMapper.selectOne(wrapper); <span class="comment">// 查询一个数据，出现多个结果使用List </span></span><br><span class="line">或者 Map </span><br><span class="line">System.out.println(user); </span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>3、</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span></span>&#123; </span><br><span class="line"><span class="comment">// 查询年龄在 20 ~ 30 岁之间的用户 </span></span><br><span class="line">QueryWrapper&lt;User&gt; wrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;(); </span><br><span class="line">wrapper.between(<span class="string">&quot;age&quot;</span>,<span class="number">20</span>,<span class="number">30</span>); <span class="comment">// 区间 </span></span><br><span class="line">Integer count = userMapper.selectCount(wrapper);<span class="comment">// 查询结果数 </span></span><br><span class="line">System.out.println(count); </span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>4、</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模糊查询 </span></span><br><span class="line"><span class="meta">@Test</span> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span></span>&#123; </span><br><span class="line"><span class="comment">// 查询年龄在 20 ~ 30 岁之间的用户 </span></span><br><span class="line">QueryWrapper&lt;User&gt; wrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;(); </span><br><span class="line"><span class="comment">// 左和右 t% </span></span><br><span class="line">wrapper </span><br><span class="line">.notLike(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;e&quot;</span>) </span><br><span class="line">.likeRight(<span class="string">&quot;email&quot;</span>,<span class="string">&quot;t&quot;</span>); </span><br><span class="line">List&lt;Map&lt;String, Object&gt;&gt; maps = userMapper.selectMaps(wrapper); </span><br><span class="line">maps.forEach(System.out::println); </span><br><span class="line">&#125; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="16-代码生成器"><a href="#16-代码生成器" class="headerlink" title="16 代码生成器"></a>16 代码生成器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.roc;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.DbType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.FieldFill;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.IdType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.AutoGenerator;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.DataSourceConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.GlobalConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.PackageConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.StrategyConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.po.TableFill;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.rules.DateType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="comment">//代码生成器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateCode</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//构建一个代码生成器 对象</span></span><br><span class="line">        AutoGenerator mpg = <span class="keyword">new</span> AutoGenerator();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1、全局配置</span></span><br><span class="line">        GlobalConfig gc = <span class="keyword">new</span> GlobalConfig();</span><br><span class="line">        String projectPath = System.getProperty(<span class="string">&quot;user.dir&quot;</span>);</span><br><span class="line">        gc.setOutputDir(projectPath + <span class="string">&quot;/src/main/java&quot;</span>);</span><br><span class="line">        gc.setAuthor(<span class="string">&quot;killer&quot;</span>);</span><br><span class="line">        gc.setOpen(<span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">// gc.setSwagger2(true); 实体属性 Swagger2 注解</span></span><br><span class="line">        <span class="comment">//是否覆盖</span></span><br><span class="line">        gc.setFileOverride(<span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">// 去Service的I前缀</span></span><br><span class="line">        gc.setServiceName(<span class="string">&quot;%sService&quot;</span>);</span><br><span class="line">        gc.setIdType(IdType.ID_WORKER);</span><br><span class="line">        gc.setDateType(DateType.ONLY_DATE);</span><br><span class="line">        gc.setSwagger2(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        mpg.setGlobalConfig(gc);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2、设置数据源</span></span><br><span class="line">        DataSourceConfig dsc = <span class="keyword">new</span> DataSourceConfig();</span><br><span class="line">        dsc.setUrl(<span class="string">&quot;jdbc:mysql://47.112.149.206:3306/website? useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT%2B8&quot;</span>);</span><br><span class="line">        dsc.setDriverName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        dsc.setUsername(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        dsc.setPassword(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        dsc.setDbType(DbType.MYSQL);</span><br><span class="line">        mpg.setDataSource(dsc);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//3、包的配置</span></span><br><span class="line">        PackageConfig pc = <span class="keyword">new</span> PackageConfig();</span><br><span class="line">        pc.setParent(<span class="string">&quot;com.roc&quot;</span>);</span><br><span class="line">        pc.setEntity(<span class="string">&quot;entity&quot;</span>);</span><br><span class="line">        pc.setMapper(<span class="string">&quot;mapper&quot;</span>);</span><br><span class="line">        pc.setService(<span class="string">&quot;service&quot;</span>);</span><br><span class="line">        pc.setController(<span class="string">&quot;controller&quot;</span>);</span><br><span class="line">        mpg.setPackageInfo(pc);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4、策略配置</span></span><br><span class="line">        StrategyConfig strategy = <span class="keyword">new</span> StrategyConfig();</span><br><span class="line">        <span class="comment">//要映射的表名</span></span><br><span class="line">        strategy.setInclude(<span class="string">&quot;w_user&quot;</span>);</span><br><span class="line">        <span class="comment">//数据库表映射到实体的命名策略</span></span><br><span class="line">        strategy.setNaming(NamingStrategy.underline_to_camel);</span><br><span class="line">        <span class="comment">//数据库表字段映射到实体的命名策略</span></span><br><span class="line">        strategy.setColumnNaming(NamingStrategy.underline_to_camel);</span><br><span class="line">        <span class="comment">//生成实体时去掉表前缀</span></span><br><span class="line">        strategy.setTablePrefix(pc.getModuleName() + <span class="string">&quot;w_&quot;</span>);</span><br><span class="line">        <span class="comment">//lombok</span></span><br><span class="line">        strategy.setEntityLombokModel(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//逻辑删除</span></span><br><span class="line">        strategy.setLogicDeleteFieldName(<span class="string">&quot;deleted&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 自动填充配置</span></span><br><span class="line">        TableFill createTime = <span class="keyword">new</span> TableFill(<span class="string">&quot;create_time&quot;</span>, FieldFill.INSERT);</span><br><span class="line">        TableFill updateTime = <span class="keyword">new</span> TableFill(<span class="string">&quot;update_time&quot;</span>, FieldFill.INSERT_UPDATE);</span><br><span class="line">        ArrayList&lt;TableFill&gt; tableFills = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        tableFills.add(createTime);</span><br><span class="line">        tableFills.add(updateTime);</span><br><span class="line">        strategy.setTableFillList(tableFills);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 乐观锁</span></span><br><span class="line">        strategy.setVersionFieldName(<span class="string">&quot;version&quot;</span>);strategy.setRestControllerStyle(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">//localhost:8080/hello_id_2</span></span><br><span class="line">        strategy.setControllerMappingHyphenStyle(<span class="keyword">true</span>);</span><br><span class="line">        mpg.setStrategy(strategy);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行代码构造器</span></span><br><span class="line">        mpg.execute();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/22/MyBatis-Plus/" data-id="ckk7z7cwk000bjchfbb1lb7lv" data-title="MyBatis-Plus" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis-Plus/" rel="tag">MyBatis-Plus</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vue小技巧" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/22/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="article-date">
+  <time class="dt-published" datetime="2021-01-22T07:14:31.000Z" itemprop="datePublished">2021-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/22/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/">vue</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Vue-小技巧"><a href="#Vue-小技巧" class="headerlink" title="Vue 小技巧"></a>Vue 小技巧</h2><h3 id="1-去掉url的-：在路由文件添加-mode-‘history’"><a href="#1-去掉url的-：在路由文件添加-mode-‘history’" class="headerlink" title="1 去掉url的#：在路由文件添加 mode: ‘history’"></a>1 去掉url的#：在路由文件添加 <strong>mode: ‘history’</strong></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;<span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>, <span class="attr">redirect</span>: <span class="string">&#x27;/home&#x27;</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>, <span class="attr">component</span>: Home&#125;,</span><br><span class="line">  </span><br><span class="line">]</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  mode: <span class="string">&#x27;history&#x27;</span>,</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+<h3 id="2-全局封装组件"><a href="#2-全局封装组件" class="headerlink" title="2 全局封装组件"></a>2 全局封装组件</h3><ol>
+<li>在components文件下创建一个<strong>vue文件</strong></li>
+</ol>
+<p><img src="C:\Users\tim\AppData\Roaming\Typora\typora-user-images\1611299847251.png" alt="1611299847251"></p>
+<ol start="2">
+<li><p>在components文件下创建<strong>index.js</strong></p>
+<p><img src="C:\Users\tim\AppData\Roaming\Typora\typora-user-images\1611299964253.png" alt="1611299964253"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">&#x27;../components/Header.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    Header</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在<strong>mian.js</strong>文件中注册</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载公共组件</span></span><br><span class="line"><span class="keyword">import</span> Components <span class="keyword">from</span> <span class="string">&#x27;./components/index&#x27;</span></span><br><span class="line"><span class="built_in">Object</span>.keys(Components).forEach(<span class="function">(<span class="params">key</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name = key.toString()</span><br><span class="line">  Vue.component(name,Components[key])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 
 </li>
@@ -94,7 +1853,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="ckk7o14qr0001q8hf77ia5nha" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/22/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/" data-id="ckk7z7cwd0004jchfgolfhohh" data-title="vue" class="article-share-link">Share</a>
       
       
       
@@ -174,7 +1933,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/21/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckk7o14qm0000q8hf08gj99vi" data-title="Hexo搭建个人博客" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/21/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckk7z7cvj0000jchf6nnu1bjb" data-title="Hexo搭建个人博客" class="article-share-link">Share</a>
       
       
       
@@ -201,7 +1960,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis-Plus/" rel="tag">MyBatis-Plus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
     </div>
   </div>
 
@@ -211,7 +1970,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MyBatis-Plus/" style="font-size: 10px;">MyBatis-Plus</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
     </div>
   </div>
 
@@ -233,11 +1992,23 @@
       <ul>
         
           <li>
-            <a href="/2021/01/21/vue%E5%B0%8F%E6%8A%80%E5%B7%A7/">(no title)</a>
+            <a href="/2021/01/22/Vue%E8%AF%AD%E6%B3%95/">Vue语法</a>
           </li>
         
           <li>
-            <a href="/2021/01/21/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">Hexo搭建个人博客</a>
+            <a href="/2021/01/22/HashMap/">HashMap</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/22/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/22/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/22/MyBatis-Plus/">MyBatis-Plus</a>
           </li>
         
       </ul>
